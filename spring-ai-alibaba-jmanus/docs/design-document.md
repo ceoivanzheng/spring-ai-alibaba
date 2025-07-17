@@ -42,6 +42,101 @@ Spring AI Alibaba JManus 是一个基于 Java 的多智能体协作系统，专�
 └─────────────────────────────────────────────────────────────────┘
 ```
 
+#### 2.1.1 系统组件图
+
+```mermaid
+graph TB
+    subgraph "前端层"
+        Vue3[Vue3 前端应用]
+        AgentConfig[智能体配置页面]
+        McpConfig[MCP配置页面]
+        ToolSelection[工具选择组件]
+    end
+    
+    subgraph "API层"
+        AgentController[AgentController]
+        McpController[McpController]
+        PlanController[PlanController]
+    end
+    
+    subgraph "业务逻辑层"
+        subgraph "规划协调层"
+            PlanningCoordinator[PlanningCoordinator]
+            PlanCreator[PlanCreator]
+            PlanFinalizer[PlanFinalizer]
+        end
+        
+        subgraph "智能体管理层"
+            AgentService[AgentService]
+            DynamicAgentLoader[DynamicAgentLoader]
+            AgentScanner[DynamicAgentScanner]
+        end
+        
+        subgraph "工具系统层"
+            PlanningFactory[PlanningFactory]
+            ToolCallbackManager[ToolCallbackManager]
+            BuiltinTools[内置工具集]
+        end
+        
+        subgraph "MCP集成层"
+            McpService[McpService]
+            McpTool[McpTool]
+            McpClient[McpAsyncClient]
+        end
+    end
+    
+    subgraph "执行引擎层"
+        PlanExecutorFactory[PlanExecutorFactory]
+        PlanExecutor[PlanExecutor]
+        MapReduceExecutor[MapReducePlanExecutor]
+        BaseAgent[BaseAgent]
+        DynamicAgent[DynamicAgent]
+    end
+    
+    subgraph "数据访问层"
+        AgentRepo[DynamicAgentRepository]
+        McpRepo[McpConfigRepository]
+        RecordRepo[PlanExecutionRepository]
+        Database[(数据库)]
+    end
+    
+    Vue3 --> AgentController
+    Vue3 --> McpController
+    Vue3 --> PlanController
+    
+    AgentController --> AgentService
+    McpController --> McpService
+    PlanController --> PlanningCoordinator
+    
+    PlanningCoordinator --> PlanCreator
+    PlanningCoordinator --> PlanExecutorFactory
+    PlanningCoordinator --> PlanFinalizer
+    
+    AgentService --> DynamicAgentLoader
+    AgentService --> AgentScanner
+    
+    PlanExecutorFactory --> PlanExecutor
+    PlanExecutorFactory --> MapReduceExecutor
+    
+    PlanExecutor --> BaseAgent
+    PlanExecutor --> DynamicAgent
+    
+    DynamicAgentLoader --> PlanningFactory
+    PlanningFactory --> BuiltinTools
+    PlanningFactory --> McpService
+    
+    McpService --> McpTool
+    McpService --> McpClient
+    
+    AgentService --> AgentRepo
+    McpService --> McpRepo
+    PlanningCoordinator --> RecordRepo
+    
+    AgentRepo --> Database
+    McpRepo --> Database
+    RecordRepo --> Database
+```
+
 ### 2.2 核心模块
 
 #### 2.2.1 Plan-Act 执行架构
@@ -110,6 +205,45 @@ public interface PlanExecutorInterface {
 - 管理执行上下文和状态
 - 处理异常和错误恢复
 
+#### 3.1.4 Plan-Act执行时序图
+
+```mermaid
+sequenceDiagram
+    participant User as 用户
+    participant PC as PlanningCoordinator
+    participant PCreator as PlanCreator
+    participant PFactory as PlanExecutorFactory
+    participant PE as PlanExecutor
+    participant Agent as DynamicAgent
+    participant Tool as 工具
+    participant PFinalizer as PlanFinalizer
+    
+    User->>PC: 提交执行请求
+    PC->>PCreator: 创建执行计划
+    PCreator->>PCreator: 调用LLM生成计划
+    PCreator-->>PC: 返回ExecutionPlan
+    
+    PC->>PFactory: 创建执行器
+    PFactory-->>PC: 返回PlanExecutor
+    
+    PC->>PE: 开始执行计划
+    
+    loop 执行所有步骤
+        PE->>Agent: 执行步骤
+        Agent->>Agent: Think (思考)
+        Agent->>Tool: Act (调用工具)
+        Tool-->>Agent: 返回执行结果
+        Agent-->>PE: 返回步骤结果
+        PE->>PE: 记录执行状态
+    end
+    
+    PE-->>PC: 执行完成
+    PC->>PFinalizer: 最终化处理
+    PFinalizer->>PFinalizer: 生成最终结果
+    PFinalizer-->>PC: 返回最终结果
+    PC-->>User: 返回执行结果
+```
+
 ### 3.2 智能体系统
 
 #### 3.2.1 智能体基类 (BaseAgent)
@@ -161,6 +295,107 @@ public class DynamicAgentEntity {
 - `deleteAgent(String id)`: 删除智能体
 - `getAvailableTools()`: 获取可用工具列表
 
+#### 3.2.4 智能体类图
+
+```mermaid
+classDiagram
+    class BaseAgent {
+        <<abstract>>
+        -String currentPlanId
+        -String rootPlanId
+        -AgentState state
+        #ILlmService llmService
+        #PlanExecutionRecorder planExecutionRecorder
+        -Map~String,Object~ envData
+        +getName()* String
+        +clearUp(String planId)*
+        +think() boolean
+        +act() boolean
+    }
+    
+    class ReActAgent {
+        <<abstract>>
+        -int maxSteps
+        -int currentStep
+        +execute() void
+        #executeWithRetry(int maxRetries) boolean
+    }
+    
+    class DynamicAgent {
+        -String agentName
+        -String agentDescription
+        -String nextStepPrompt
+        -List~String~ availableToolKeys
+        -ToolCallbackProvider toolCallbackProvider
+        -DynamicModelEntity model
+        +getName() String
+        +clearUp(String planId) void
+        #think() boolean
+        +buildPrompt() Prompt
+    }
+    
+    class AgentState {
+        <<enumeration>>
+        NOT_STARTED
+        RUNNING
+        FINISHED
+        ERROR
+    }
+    
+    class DynamicAgentEntity {
+        -Long id
+        -String agentName
+        -String agentDescription
+        -String nextStepPrompt
+        -List~String~ availableToolKeys
+        -String className
+        -DynamicModelEntity model
+        -String namespace
+    }
+    
+    class AgentService {
+        <<interface>>
+        +getAllAgents() List~AgentConfig~
+        +createAgent(AgentConfig) AgentConfig
+        +updateAgent(AgentConfig) AgentConfig
+        +deleteAgent(String id) void
+        +getAvailableTools() List~Tool~
+        +createDynamicBaseAgent(...) BaseAgent
+    }
+    
+    class AgentServiceImpl {
+        -IDynamicAgentLoader dynamicAgentLoader
+        -DynamicAgentRepository repository
+        -IPlanningFactory planningFactory
+        +getAllAgents() List~AgentConfig~
+        +createAgent(AgentConfig) AgentConfig
+        +updateAgent(AgentConfig) AgentConfig
+        +deleteAgent(String id) void
+    }
+    
+    BaseAgent <|-- ReActAgent
+    ReActAgent <|-- DynamicAgent
+    BaseAgent --> AgentState : uses
+    DynamicAgent --> DynamicAgentEntity : maps to
+    AgentService <|.. AgentServiceImpl
+    AgentServiceImpl --> DynamicAgentEntity : manages
+```
+
+#### 3.2.5 智能体状态机图
+
+```mermaid
+stateDiagram-v2
+    [*] --> NOT_STARTED
+    NOT_STARTED --> RUNNING : execute()
+    RUNNING --> RUNNING : think() & act()
+    RUNNING --> FINISHED : 完成所有步骤
+    RUNNING --> ERROR : 执行异常
+    ERROR --> RUNNING : 重试成功
+    ERROR --> FINISHED : 达到最大重试次数
+    FINISHED --> [*]
+    ERROR --> [*]
+```
+
 ### 3.3 工具系统
 
 #### 3.3.1 工具接口定义
@@ -202,6 +437,83 @@ public Map<String, ToolCallBackContext> toolCallbackMap(String planId, String ro
 3. 设置工具元数据和参数
 4. 建立工具名称到回调的映射关系
 
+#### 3.3.4 工具系统类图
+
+```mermaid
+classDiagram
+    class ToolCallBiFunctionDef {
+        <<interface>>
+        +getName() String
+        +getDescription() String
+        +getParameters() String
+        +getInputType() Class~T~
+        +run(T input) ToolExecuteResult
+        +getCurrentToolStateString() String
+        +cleanup(String planId) void
+    }
+    
+    class AbstractBaseTool {
+        <<abstract>>
+        #String currentPlanId
+        #String rootPlanId
+        +setCurrentPlanId(String) void
+        +setRootPlanId(String) void
+        +isReturnDirect() boolean
+        +getServiceGroup() String
+    }
+    
+    class BrowserUseTool {
+        -ChromeDriverService chromeDriverService
+        -SmartContentSavingService innerStorageService
+        +getName() String
+        +run(BrowserInput) ToolExecuteResult
+        +cleanup(String planId) void
+    }
+    
+    class Bash {
+        -UnifiedDirectoryManager directoryManager
+        +getName() String
+        +run(BashInput) ToolExecuteResult
+        +cleanup(String planId) void
+    }
+    
+    class PythonExecute {
+        +getName() String
+        +run(PythonInput) ToolExecuteResult
+        +cleanup(String planId) void
+    }
+    
+    class McpTool {
+        -ToolCallback toolCallback
+        -String serviceNameString
+        -McpStateHolderService mcpStateHolderService
+        +getName() String
+        +run(Map) ToolExecuteResult
+        +cleanup(String planId) void
+    }
+    
+    class ToolCallBackContext {
+        -ToolCallback toolCallback
+        -ToolCallBiFunctionDef functionInstance
+        +getToolCallback() ToolCallback
+        +getFunctionInstance() ToolCallBiFunctionDef
+    }
+    
+    class PlanningFactory {
+        +toolCallbackMap(String, String, List) Map~String,ToolCallBackContext~
+        +createRestClient() RestClient.Builder
+        +emptyToolCallbackProvider() ToolCallbackProvider
+    }
+    
+    ToolCallBiFunctionDef <|.. AbstractBaseTool
+    AbstractBaseTool <|-- BrowserUseTool
+    AbstractBaseTool <|-- Bash
+    AbstractBaseTool <|-- PythonExecute
+    AbstractBaseTool <|-- McpTool
+    PlanningFactory --> ToolCallBackContext : creates
+    ToolCallBackContext --> ToolCallBiFunctionDef : contains
+```
+
 ### 3.4 MCP集成系统
 
 #### 3.4.1 MCP服务接口
@@ -236,6 +548,53 @@ public interface IMcpService {
 - 递增等待时间（1s, 2s, 3s）
 - 超时配置（60秒）
 - 连接状态监控
+
+#### 3.4.5 MCP集成时序图
+
+```mermaid
+sequenceDiagram
+    participant User as 用户
+    participant McpController as McpController
+    participant McpService as McpService
+    participant McpClient as McpAsyncClient
+    participant McpServer as MCP服务器
+    participant Agent as DynamicAgent
+    participant McpTool as McpTool
+    
+    User->>McpController: 添加MCP服务器配置
+    McpController->>McpService: addMcpServer(config)
+    
+    McpService->>McpService: 验证配置格式
+    McpService->>McpClient: 创建客户端连接
+    
+    loop 重试机制 (最多3次)
+        McpClient->>McpServer: 初始化连接
+        alt 连接成功
+            McpServer-->>McpClient: 连接确认
+            McpClient-->>McpService: 初始化完成
+        else 连接失败
+            McpServer-->>McpClient: 连接错误
+            McpClient->>McpClient: 等待重试 (1s,2s,3s)
+        end
+    end
+    
+    McpService->>McpService: 缓存工具回调
+    McpService-->>McpController: 配置完成
+    McpController-->>User: 返回结果
+    
+    Note over McpService: 执行阶段
+    Agent->>McpService: 获取工具回调
+    McpService-->>Agent: 返回McpTool列表
+    
+    Agent->>McpTool: 调用工具
+    McpTool->>McpTool: 序列化参数为JSON
+    McpTool->>McpClient: 发送工具调用请求
+    McpClient->>McpServer: 执行工具
+    McpServer-->>McpClient: 返回执行结果
+    McpClient-->>McpTool: 返回结果
+    McpTool->>McpTool: 更新工具状态
+    McpTool-->>Agent: 返回ToolExecuteResult
+```
 
 ## 4. 数据模型设计
 
@@ -289,6 +648,83 @@ CREATE TABLE plan_execution_record (
     result TEXT,
     error_message TEXT
 );
+```
+
+### 4.4 数据库ER图
+
+```mermaid
+erDiagram
+    DYNAMIC_AGENT {
+        BIGINT id PK
+        VARCHAR agent_name UK
+        VARCHAR agent_description
+        TEXT system_prompt
+        TEXT next_step_prompt
+        VARCHAR class_name
+        BIGINT model_id FK
+        VARCHAR namespace
+    }
+    
+    DYNAMIC_AGENT_TOOLS {
+        BIGINT agent_id FK
+        VARCHAR tool_key
+    }
+    
+    DYNAMIC_MODEL {
+        BIGINT id PK
+        VARCHAR type
+        VARCHAR model_name
+        VARCHAR provider
+        TEXT configuration
+    }
+    
+    MCP_CONFIG {
+        BIGINT id PK
+        VARCHAR mcp_server_name
+        ENUM connection_type
+        TEXT config_json
+        TIMESTAMP created_at
+    }
+    
+    PLAN_EXECUTION_RECORD {
+        BIGINT id PK
+        VARCHAR plan_id
+        VARCHAR conversation_id
+        TEXT user_request
+        VARCHAR status
+        TIMESTAMP start_time
+        TIMESTAMP end_time
+        TEXT result
+        TEXT error_message
+    }
+    
+    THINK_ACT_RECORD {
+        BIGINT id PK
+        BIGINT plan_execution_record_id FK
+        VARCHAR step_name
+        TEXT thinking_output
+        TEXT action_output
+        VARCHAR status
+        TIMESTAMP start_time
+        TIMESTAMP end_time
+        TEXT error_message
+        VARCHAR tool_name
+        TEXT tool_parameters
+    }
+    
+    ACT_TOOL_INFO {
+        BIGINT id PK
+        BIGINT think_act_record_id FK
+        VARCHAR name
+        TEXT parameters
+        TEXT result
+        VARCHAR tool_id
+    }
+    
+    DYNAMIC_AGENT ||--o{ DYNAMIC_AGENT_TOOLS : "has tools"
+    DYNAMIC_AGENT }o--|| DYNAMIC_MODEL : "uses model"
+    PLAN_EXECUTION_RECORD ||--o{ THINK_ACT_RECORD : "contains steps"
+    THINK_ACT_RECORD ||--o{ ACT_TOOL_INFO : "has tool calls"
 ```
 
 ## 5. API设计
@@ -428,6 +864,67 @@ interface McpState {
 }
 ```
 
+### 6.4 前端架构图
+
+```mermaid
+graph TB
+    subgraph "Vue3 前端应用"
+        subgraph "路由层"
+            Router[Vue Router]
+        end
+        
+        subgraph "页面组件"
+            AgentConfigPage[智能体配置页面]
+            McpConfigPage[MCP配置页面]
+            PlanExecutionPage[计划执行页面]
+        end
+        
+        subgraph "公共组件"
+            ToolSelectionModal[工具选择弹窗]
+            Modal[通用弹窗组件]
+            LoadingComponent[加载组件]
+        end
+        
+        subgraph "状态管理"
+            AgentStore[智能体状态]
+            McpStore[MCP状态]
+            ToolStore[工具状态]
+        end
+        
+        subgraph "API服务层"
+            AgentApiService[智能体API服务]
+            McpApiService[MCP API服务]
+            PlanApiService[计划API服务]
+        end
+        
+        subgraph "工具库"
+            ElementPlus[Element Plus UI]
+            Iconify[Iconify 图标]
+            TypeScript[TypeScript 类型定义]
+        end
+    end
+    
+    Router --> AgentConfigPage
+    Router --> McpConfigPage
+    Router --> PlanExecutionPage
+    
+    AgentConfigPage --> ToolSelectionModal
+    AgentConfigPage --> Modal
+    McpConfigPage --> Modal
+    
+    AgentConfigPage --> AgentStore
+    McpConfigPage --> McpStore
+    ToolSelectionModal --> ToolStore
+    
+    AgentStore --> AgentApiService
+    McpStore --> McpApiService
+    PlanExecutionPage --> PlanApiService
+    
+    AgentConfigPage --> ElementPlus
+    McpConfigPage --> ElementPlus
+    ToolSelectionModal --> Iconify
+```
+
 ## 7. 部署和配置
 
 ### 7.1 环境要求
@@ -467,6 +964,9 @@ manus:
   max-steps: 10
   enable-browser: true
   chrome-driver-path: /usr/bin/chromedriver
+
+namespace:
+  value: default
 ```
 
 #### 7.2.2 数据库配置
@@ -531,6 +1031,36 @@ services:
       MYSQL_DATABASE: jmanus
     ports:
       - "3306:3306"
+```
+
+### 7.4 部署流程图
+
+```mermaid
+flowchart TD
+    Start([开始部署]) --> CheckEnv{检查环境要求}
+    CheckEnv -->|Java 17+| CheckNode{检查Node.js}
+    CheckNode -->|Node.js 16+| CheckDB{选择数据库}
+    
+    CheckDB -->|H2| H2Config[配置H2数据库]
+    CheckDB -->|MySQL| MySQLConfig[配置MySQL数据库]
+    CheckDB -->|PostgreSQL| PGConfig[配置PostgreSQL数据库]
+    
+    H2Config --> BuildBackend[构建后端应用]
+    MySQLConfig --> BuildBackend
+    PGConfig --> BuildBackend
+    
+    BuildBackend --> BuildFrontend[构建前端应用]
+    BuildFrontend --> ConfigAPI[配置API密钥]
+    ConfigAPI --> StartApp[启动应用]
+    StartApp --> HealthCheck{健康检查}
+    
+    HealthCheck -->|成功| Complete([部署完成])
+    HealthCheck -->|失败| Debug[调试问题]
+    Debug --> StartApp
+    
+    CheckEnv -->|环境不满足| InstallEnv[安装环境]
+    CheckNode -->|版本不符| InstallEnv
+    InstallEnv --> CheckEnv
 ```
 
 ## 8. 扩展和定制
@@ -616,6 +1146,30 @@ toolDefinitions.add(new CustomTool());
 }
 ```
 
+### 8.4 扩展架构图
+
+```mermaid
+graph LR
+    subgraph "扩展点"
+        CustomAgent[自定义智能体]
+        CustomTool[自定义工具]
+        McpIntegration[MCP集成]
+        CustomPrompt[自定义提示词]
+    end
+    
+    subgraph "核心系统"
+        BaseAgent[BaseAgent基类]
+        ToolInterface[工具接口]
+        McpService[MCP服务]
+        PromptService[提示词服务]
+    end
+    
+    CustomAgent -.继承.-> BaseAgent
+    CustomTool -.实现.-> ToolInterface
+    McpIntegration -.集成.-> McpService
+    CustomPrompt -.扩展.-> PromptService
+```
+
 ## 9. 监控和日志
 
 ### 9.1 执行记录
@@ -656,6 +1210,59 @@ toolDefinitions.add(new CustomTool());
 </configuration>
 ```
 
+### 9.3 监控指标
+
+#### 9.3.1 关键监控指标
+- 计划执行成功率
+- 智能体响应时间
+- 工具调用频次
+- MCP连接状态
+- 内存和CPU使用率
+
+#### 9.3.2 监控仪表板
+
+```mermaid
+graph TB
+    subgraph "监控指标"
+        ExecutionMetrics[执行指标]
+        PerformanceMetrics[性能指标]
+        ErrorMetrics[错误指标]
+        ResourceMetrics[资源指标]
+    end
+    
+    subgraph "数据收集"
+        LogCollector[日志收集器]
+        MetricsCollector[指标收集器]
+        TraceCollector[追踪收集器]
+    end
+    
+    subgraph "存储和分析"
+        LogStorage[日志存储]
+        MetricsDB[指标数据库]
+        AnalyticsEngine[分析引擎]
+    end
+    
+    subgraph "可视化"
+        Dashboard[监控仪表板]
+        AlertSystem[告警系统]
+        ReportGenerator[报告生成器]
+    end
+    
+    ExecutionMetrics --> MetricsCollector
+    PerformanceMetrics --> MetricsCollector
+    ErrorMetrics --> LogCollector
+    ResourceMetrics --> MetricsCollector
+    
+    LogCollector --> LogStorage
+    MetricsCollector --> MetricsDB
+    TraceCollector --> AnalyticsEngine
+    
+    LogStorage --> Dashboard
+    MetricsDB --> Dashboard
+    AnalyticsEngine --> AlertSystem
+    Dashboard --> ReportGenerator
+```
+
 ## 10. 安全考虑
 
 ### 10.1 API安全
@@ -676,6 +1283,43 @@ toolDefinitions.add(new CustomTool());
 - API密钥安全管理
 - 执行日志脱敏
 
+### 10.4 安全架构图
+
+```mermaid
+graph TB
+    subgraph "安全层"
+        Authentication[身份认证]
+        Authorization[权限控制]
+        Encryption[数据加密]
+        AuditLog[审计日志]
+    end
+    
+    subgraph "应用层"
+        WebInterface[Web界面]
+        APIGateway[API网关]
+        BusinessLogic[业务逻辑]
+    end
+    
+    subgraph "数据层"
+        ConfigDB[配置数据库]
+        ExecutionDB[执行数据库]
+        LogStorage[日志存储]
+    end
+    
+    Authentication --> WebInterface
+    Authorization --> APIGateway
+    WebInterface --> APIGateway
+    APIGateway --> BusinessLogic
+    
+    Encryption --> ConfigDB
+    Encryption --> ExecutionDB
+    AuditLog --> LogStorage
+    
+    BusinessLogic --> ConfigDB
+    BusinessLogic --> ExecutionDB
+    BusinessLogic --> AuditLog
+```
+
 ## 11. 性能优化
 
 ### 11.1 缓存策略
@@ -695,6 +1339,48 @@ toolDefinitions.add(new CustomTool());
 - 智能体实例生命周期管理
 - 工具资源清理
 - 内存使用监控
+
+### 11.4 性能优化架构图
+
+```mermaid
+graph TB
+    subgraph "缓存层"
+        McpCache[MCP工具缓存]
+        AgentCache[智能体配置缓存]
+        ResultCache[执行结果缓存]
+    end
+    
+    subgraph "异步处理层"
+        TaskQueue[任务队列]
+        ThreadPool[线程池]
+        TimeoutManager[超时管理器]
+    end
+    
+    subgraph "资源管理层"
+        InstanceManager[实例管理器]
+        ResourceCleaner[资源清理器]
+        MemoryMonitor[内存监控器]
+    end
+    
+    subgraph "业务层"
+        PlanExecutor[计划执行器]
+        AgentManager[智能体管理器]
+        ToolManager[工具管理器]
+    end
+    
+    PlanExecutor --> TaskQueue
+    AgentManager --> AgentCache
+    ToolManager --> McpCache
+    
+    TaskQueue --> ThreadPool
+    ThreadPool --> TimeoutManager
+    
+    PlanExecutor --> InstanceManager
+    ToolManager --> ResourceCleaner
+    InstanceManager --> MemoryMonitor
+    
+    ResultCache --> PlanExecutor
+```
 
 ## 12. 故障排除
 
@@ -724,23 +1410,168 @@ ERROR DynamicAgent - Agent execution failed: {error}
 WARN  McpService - MCP connection timeout: {serverName}
 ```
 
+### 12.3 故障排除流程图
+
+```mermaid
+flowchart TD
+    Start([发现问题]) --> CheckLogs{检查日志}
+    
+    CheckLogs -->|MCP连接错误| McpTrouble[MCP故障排除]
+    CheckLogs -->|执行异常| ExecTrouble[执行故障排除]
+    CheckLogs -->|数据库错误| DBTrouble[数据库故障排除]
+    CheckLogs -->|其他错误| GenericTrouble[通用故障排除]
+    
+    McpTrouble --> CheckNetwork{检查网络}
+    CheckNetwork -->|网络正常| CheckConfig{检查配置}
+    CheckConfig -->|配置正确| RestartMcp[重启MCP服务]
+    CheckConfig -->|配置错误| FixConfig[修复配置]
+    
+    ExecTrouble --> CheckAgent{检查智能体配置}
+    CheckAgent -->|配置正确| CheckTools{检查工具状态}
+    CheckAgent -->|配置错误| FixAgent[修复智能体配置]
+    CheckTools -->|工具正常| CheckPrompt{检查提示词}
+    
+    DBTrouble --> CheckConnection{检查数据库连接}
+    CheckConnection -->|连接正常| CheckSchema{检查数据库结构}
+    CheckConnection -->|连接异常| FixConnection[修复连接配置]
+    
+    GenericTrouble --> CheckSystem{检查系统状态}
+    CheckSystem --> RestartApp[重启应用]
+    
+    RestartMcp --> Verify{验证修复}
+    FixConfig --> Verify
+    FixAgent --> Verify
+    CheckPrompt --> Verify
+    FixConnection --> Verify
+    CheckSchema --> Verify
+    RestartApp --> Verify
+    
+    Verify -->|问题解决| Success([问题解决])
+    Verify -->|问题仍存在| Escalate[升级处理]
+    
+    CheckNetwork -->|网络异常| FixNetwork[修复网络]
+    FixNetwork --> CheckNetwork
+```
+
 ## 13. 未来路线图
 
-### 13.1 短期计划
+### 13.1 短期计划 (3-6个月)
 
-- 增强MCP协议支持
-- 优化执行性能
-- 完善监控面板
+- **增强MCP协议支持**
+  - 支持更多MCP工具类型
+  - 优化连接稳定性
+  - 增加连接池管理
 
-### 13.2 长期规划
+- **优化执行性能**
+  - 并行执行优化
+  - 内存使用优化
+  - 响应时间优化
 
-- 支持更多AI模型提供商
-- 集成更多内置工具
-- 提供插件系统
-- 支持分布式部署
+- **完善监控面板**
+  - 实时性能监控
+  - 执行统计分析
+  - 告警机制完善
+
+### 13.2 中期规划 (6-12个月)
+
+- **AI模型集成扩展**
+  - 支持OpenAI GPT系列
+  - 支持Claude模型
+  - 支持本地开源模型
+
+- **企业级功能**
+  - 多租户支持
+  - 权限管理系统
+  - 审计日志增强
+
+- **工具生态建设**
+  - 官方工具库扩展
+  - 社区工具插件机制
+  - 工具市场平台
+
+### 13.3 长期规划 (1-2年)
+
+- **分布式架构**
+  - 微服务架构改造
+  - 容器化部署支持
+  - 云原生集成
+
+- **智能化增强**
+  - 自适应计划生成
+  - 智能故障诊断
+  - 性能自优化
+
+- **生态系统建设**
+  - 开发者社区建设
+  - 培训认证体系
+  - 商业化支持
+
+### 13.4 技术路线图
+
+```mermaid
+gantt
+    title JManus 技术路线图
+    dateFormat  YYYY-MM-DD
+    section 短期计划
+    MCP协议增强     :2025-01-01, 2025-03-31
+    性能优化       :2025-02-01, 2025-04-30
+    监控面板       :2025-03-01, 2025-05-31
+    
+    section 中期规划
+    AI模型扩展     :2025-04-01, 2025-08-31
+    企业级功能     :2025-06-01, 2025-10-31
+    工具生态       :2025-07-01, 2025-11-30
+    
+    section 长期规划
+    分布式架构     :2025-09-01, 2026-03-31
+    智能化增强     :2025-12-01, 2026-06-30
+    生态建设       :2026-01-01, 2026-12-31
+```
 
 ---
 
 **文档版本**: 1.0  
 **最后更新**: 2025年1月  
 **维护者**: Spring AI Alibaba Team
+
+## 附录
+
+### A. 术语表
+
+| 术语 | 定义 |
+|------|------|
+| Plan-Act | 计划-行动模式，先制定详细计划再逐步执行 |
+| MCP | Model Context Protocol，模型上下文协议 |
+| ReActAgent | 反应式智能体，支持思考-行动循环 |
+| MapReduce | 分布式计算模式，支持并行处理和结果聚合 |
+| DashScope | 阿里云大模型服务平台 |
+
+### B. 快速参考
+
+#### B.1 常用API端点
+```
+GET /api/agents - 获取所有智能体
+POST /api/agents - 创建智能体
+GET /api/mcp/servers - 获取MCP服务器列表
+POST /api/plans/execute - 执行计划
+```
+
+#### B.2 配置示例
+```yaml
+# 基本配置
+spring:
+  profiles:
+    active: h2
+  ai:
+    dashscope:
+      api-key: ${DASHSCOPE_API_KEY}
+server:
+  port: 18080
+```
+
+#### B.3 环境变量
+```bash
+export DASHSCOPE_API_KEY=your_api_key
+export SPRING_PROFILES_ACTIVE=h2
+export SERVER_PORT=18080
+```
