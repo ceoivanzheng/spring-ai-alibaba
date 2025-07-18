@@ -1,0 +1,14 @@
+/* 核心响应式代码 */
+svg[id^="m"][width][height][viewBox] {
+    width: 100%;             /* 图表宽度占窗口90%，避免贴边 */
+    max-width: 100%;       /* 最大宽度限制，防止过大 */
+    min-width: 100%;       /* 最小宽度限制，防止过小 */
+    height: auto;           /* 高度自适应 */
+    margin: 0 auto;         /* 水平居中 */
+    display: block;         /* 避免行内元素间隙 */
+}
+
+/* 居中图表容器（增强兼容性） */
+div.mermaid {
+    text-align: center;     /* 确保图表居中 */
+}
