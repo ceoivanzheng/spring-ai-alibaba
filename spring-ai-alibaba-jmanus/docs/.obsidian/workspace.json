@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "manus-object.md",
+                "file": "manus-request-identity.md",
                 "mode": "preview",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "manus-object"
+              "title": "manus-request-identity"
             }
           }
         ]
@@ -78,7 +78,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 200
+    "width": 223.5
   },
   "right": {
     "id": "5ab86612b3801a28",
@@ -94,7 +94,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "manus-object.md",
+                "file": "manus-request-identity.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -104,7 +104,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "manus-object 的反向链接列表"
+              "title": "manus-request-identity 的反向链接列表"
             }
           },
           {
@@ -113,12 +113,12 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "manus-object.md",
+                "file": "manus-request-identity.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "manus-object 的出链列表"
+              "title": "manus-request-identity 的出链列表"
             }
           },
           {
@@ -142,13 +142,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "manus-object.md",
+                "file": "manus-request-identity.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "manus-object 的大纲"
+              "title": "manus-request-identity 的大纲"
             }
           }
         ]
@@ -168,23 +168,26 @@
       "command-palette:打开命令面板": false
     }
   },
-  "active": "2862271d85f49788",
+  "active": "4321ea7c72eb6f76",
   "lastOpenFiles": [
+    "manus-plan-dialog-object.md",
+    "manus-request-identity.md",
+    "manus-plan-template-design.md",
+    "manus-simple-dialog-object.md",
+    "manus-simple-dialog.md",
+    "manus-object.md",
+    "manus-plan-dialog.md",
+    "manus-plan-dialog-process.md",
+    "manus-repository-design.md",
+    "manus-service-design.md",
+    "manus-simple-dialog-process.md",
     "manus-design-document.md",
     "manus-database-design.md",
     "manus-claude-dialog.md",
     "manus-archimate.md",
     "manus-api-design.md",
-    "manus-object.md",
     "Archimate.puml",
-    "manus-plan-dialog.md",
     "manus-story.md",
-    "manus-simple-dialog-process.md",
-    "manus-simple-dialog.md",
-    "manus-service-design.md",
-    "manus-repository-design.md",
-    "manus-plan-template-design.md",
-    "manus-plan-dialog-process.md",
     "story.md",
     "simple-dialog.md",
     "service-design.md",
@@ -193,9 +196,6 @@
     "plan-dialog.md",
     "design-document.md",
     "database-design.md",
-    "plan-template-design.md",
-    "simple-dialog-process.md",
-    "api-design.md",
-    "claude-dialog.md"
+    "plan-template-design.md"
   ]
 }
