@@ -170,8 +170,12 @@
   },
   "active": "2862271d85f49788",
   "lastOpenFiles": [
-    "manus-claude-dialog.md",
+    "manus-mine-claude-prompt.md",
+    "manus-archimate.md",
+    "manus-api-design.md",
+    "manus-component.md",
     "manus-architecture.md",
+    "manus-claude-dialog.md",
     "manus-request-identity.md",
     "manus-plan-dialog-object.md",
     "manus-plan-template-design.md",
@@ -185,8 +189,6 @@
     "manus-simple-dialog-process.md",
     "manus-design-document.md",
     "manus-database-design.md",
-    "manus-archimate.md",
-    "manus-api-design.md",
     "Archimate.puml",
     "manus-story.md",
     "story.md",
@@ -194,8 +196,6 @@
     "service-design.md",
     "repository-design.md",
     "plan-dialog-process.md",
-    "plan-dialog.md",
-    "design-document.md",
-    "database-design.md"
+    "plan-dialog.md"
   ]
 }
