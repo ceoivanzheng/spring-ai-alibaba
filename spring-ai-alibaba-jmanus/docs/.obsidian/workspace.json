@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "plan_dialog.md",
+                "file": "simple_dialog_process.md",
                 "mode": "preview",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "plan_dialog"
+              "title": "simple_dialog_process"
             }
           }
         ]
@@ -94,7 +94,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "plan_dialog.md",
+                "file": "simple_dialog_process.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -104,7 +104,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "plan_dialog 的反向链接列表"
+              "title": "simple_dialog_process 的反向链接列表"
             }
           },
           {
@@ -113,12 +113,12 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "plan_dialog.md",
+                "file": "simple_dialog_process.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "plan_dialog 的出链列表"
+              "title": "simple_dialog_process 的出链列表"
             }
           },
           {
@@ -142,13 +142,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "plan_dialog.md",
+                "file": "simple_dialog_process.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "plan_dialog 的大纲"
+              "title": "simple_dialog_process 的大纲"
             }
           }
         ]
@@ -170,11 +170,13 @@
   },
   "active": "2862271d85f49788",
   "lastOpenFiles": [
+    "simple_dialog.md",
+    "simple_dialog_process.md",
+    "plan_dialog.md",
+    "plan_dialog_process.md",
     "repository-design.md",
     "service-design.md",
     "story.md",
-    "simple_dialog.md",
-    "plan_dialog.md",
     "design-document.md",
     "database-design.md",
     "claude_dialog.md",
