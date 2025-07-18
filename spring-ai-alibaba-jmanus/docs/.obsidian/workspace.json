@@ -11,14 +11,10 @@
             "id": "2862271d85f49788",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "api-design.md",
-                "mode": "preview",
-                "source": false
-              },
+              "type": "empty",
+              "state": {},
               "icon": "lucide-file",
-              "title": "api-design"
+              "title": "新标签页"
             }
           }
         ]
@@ -94,7 +90,6 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "api-design.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -104,7 +99,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "api-design 的反向链接列表"
+              "title": "反向链接"
             }
           },
           {
@@ -113,12 +108,11 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "api-design.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "api-design 的出链列表"
+              "title": "出链"
             }
           },
           {
@@ -142,13 +136,12 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "api-design.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "api-design 的大纲"
+              "title": "大纲"
             }
           }
         ]
@@ -170,22 +163,31 @@
   },
   "active": "2862271d85f49788",
   "lastOpenFiles": [
-    "simple-dialog-process.md",
-    "plan-dialog-process.md",
-    "simple-dialog.md",
-    "claude-dialog.md",
-    "plan-dialog.md",
-    "plan-template-design.md",
-    "service-design.md",
-    "simple_dialog.md",
-    "simple_dialog_process.md",
     "story.md",
-    "plan_dialog.md",
-    "plan_dialog_process.md",
+    "manus-story.md",
+    "manus-simple-dialog.md",
+    "manus-simple-dialog-process.md",
+    "manus-service-design.md",
+    "manus-repository-design.md",
+    "manus-plan-template-design.md",
+    "manus-plan-dialog.md",
+    "manus-plan-dialog-process.md",
+    "manus-design-document.md",
+    "manus-database-design.md",
+    "manus-claude-dialog.md",
+    "manus-api-design.md",
+    "simple-dialog.md",
+    "service-design.md",
     "repository-design.md",
+    "plan-dialog-process.md",
+    "plan-dialog.md",
     "design-document.md",
     "database-design.md",
-    "claude_dialog.md",
-    "api-design.md"
+    "plan-template-design.md",
+    "simple-dialog-process.md",
+    "api-design.md",
+    "claude-dialog.md",
+    "simple_dialog.md",
+    "simple_dialog_process.md"
   ]
 }
