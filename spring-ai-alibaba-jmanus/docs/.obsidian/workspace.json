@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "manus-architecture.md",
+                "file": "manus-plantuml-simple-dialog.md",
                 "mode": "preview",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "manus-architecture"
+              "title": "manus-plantuml-simple-dialog"
             }
           }
         ]
@@ -94,7 +94,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "manus-architecture.md",
+                "file": "manus-plantuml-simple-dialog.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -104,7 +104,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "manus-architecture 的反向链接列表"
+              "title": "manus-plantuml-simple-dialog 的反向链接列表"
             }
           },
           {
@@ -113,12 +113,12 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "manus-architecture.md",
+                "file": "manus-plantuml-simple-dialog.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "manus-architecture 的出链列表"
+              "title": "manus-plantuml-simple-dialog 的出链列表"
             }
           },
           {
@@ -142,13 +142,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "manus-architecture.md",
+                "file": "manus-plantuml-simple-dialog.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "manus-architecture 的大纲"
+              "title": "manus-plantuml-simple-dialog 的大纲"
             }
           }
         ]
@@ -170,17 +170,22 @@
   },
   "active": "2862271d85f49788",
   "lastOpenFiles": [
-    "manus-mine-claude-prompt.md",
+    "manus-plantuml-plan-dialog.md",
+    "manus-simple-dialog.md",
+    "manus-simple-dialog-object.md",
+    "manus-plantuml-simple-dialog.md",
+    "manus-er.md",
+    "manus-architecture.md",
     "manus-archimate.md",
     "manus-api-design.md",
+    "manus-story.md",
+    "manus-database-design.md",
+    "manus-mine-claude-prompt.md",
     "manus-component.md",
-    "manus-architecture.md",
     "manus-claude-dialog.md",
     "manus-request-identity.md",
     "manus-plan-dialog-object.md",
     "manus-plan-template-design.md",
-    "manus-simple-dialog-object.md",
-    "manus-simple-dialog.md",
     "manus-object.md",
     "manus-plan-dialog.md",
     "manus-plan-dialog-process.md",
@@ -188,14 +193,9 @@
     "manus-service-design.md",
     "manus-simple-dialog-process.md",
     "manus-design-document.md",
-    "manus-database-design.md",
     "Archimate.puml",
-    "manus-story.md",
     "story.md",
     "simple-dialog.md",
-    "service-design.md",
-    "repository-design.md",
-    "plan-dialog-process.md",
-    "plan-dialog.md"
+    "service-design.md"
   ]
 }
