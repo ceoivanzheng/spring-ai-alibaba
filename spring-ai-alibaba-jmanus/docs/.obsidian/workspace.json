@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "repository-design.md",
+                "file": "plan_dialog.md",
                 "mode": "preview",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "repository-design"
+              "title": "plan_dialog"
             }
           }
         ]
@@ -78,7 +78,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 200
   },
   "right": {
     "id": "5ab86612b3801a28",
@@ -94,7 +94,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "repository-design.md",
+                "file": "plan_dialog.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -104,7 +104,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "repository-design 的反向链接列表"
+              "title": "plan_dialog 的反向链接列表"
             }
           },
           {
@@ -113,12 +113,12 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "repository-design.md",
+                "file": "plan_dialog.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "repository-design 的出链列表"
+              "title": "plan_dialog 的出链列表"
             }
           },
           {
@@ -142,13 +142,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "repository-design.md",
+                "file": "plan_dialog.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "repository-design 的大纲"
+              "title": "plan_dialog 的大纲"
             }
           }
         ]
@@ -170,11 +170,14 @@
   },
   "active": "2862271d85f49788",
   "lastOpenFiles": [
-    "design-document.md",
-    "database-design.md",
-    "api-design.md",
     "repository-design.md",
     "service-design.md",
-    "simple_dialog.md"
+    "story.md",
+    "simple_dialog.md",
+    "plan_dialog.md",
+    "design-document.md",
+    "database-design.md",
+    "claude_dialog.md",
+    "api-design.md"
   ]
 }
