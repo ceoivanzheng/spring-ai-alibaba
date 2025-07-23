@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "jmanus_activity_diagram.md",
+                "file": "jmanus_deployment_diagram.md",
                 "mode": "preview",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "jmanus_activity_diagram"
+              "title": "jmanus_deployment_diagram"
             }
           }
         ]
@@ -171,12 +171,12 @@
   },
   "active": "be91e8fb7522ee00",
   "lastOpenFiles": [
-    "jmanus_sequence_diagram.md",
-    "jmanus_object_diagram.md",
-    "jmanus_deployment_diagram.md",
     "jmanus_component_diagram.md",
     "jmanus_class_diagram.md",
     "jmanus_activity_diagram.md",
+    "jmanus_sequence_diagram.md",
+    "jmanus_object_diagram.md",
+    "jmanus_deployment_diagram.md",
     "manus-plan-dialog-process.md",
     "manus-plan-dialog-object.md",
     "manus-plan-dialog.md",

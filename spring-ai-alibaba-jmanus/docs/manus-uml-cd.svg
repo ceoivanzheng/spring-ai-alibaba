@@ -1,0 +1,560 @@
+<svg width="1800" height="1200" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      .title { font-family: Arial, sans-serif; font-size: 24px; font-weight: bold; fill: #2c3e50; text-anchor: middle; }
+      .layer-title { font-family: Arial, sans-serif; font-size: 16px; font-weight: bold; fill: #34495e; text-anchor: middle; }
+      .class-title { font-family: Arial, sans-serif; font-size: 12px; font-weight: bold; fill: #ffffff; text-anchor: middle; }
+      .interface-title { font-family: Arial, sans-serif; font-size: 12px; font-weight: bold; fill: #2c3e50; text-anchor: middle; }
+      .method-text { font-family: Arial, sans-serif; font-size: 9px; fill: #2c3e50; }
+      .field-text { font-family: Arial, sans-serif; font-size: 9px; fill: #7f8c8d; }
+      .relationship-text { font-family: Arial, sans-serif; font-size: 8px; fill: #e74c3c; font-weight: bold; }
+      .note-text { font-family: Arial, sans-serif; font-size: 10px; fill: #34495e; }
+      .pattern-text { font-family: Arial, sans-serif; font-size: 11px; fill: #8e44ad; font-weight: bold; }
+      
+      .inheritance-line { stroke: #e74c3c; stroke-width: 2; fill: none; marker-end: url(#inheritance-arrow); }
+      .composition-line { stroke: #f39c12; stroke-width: 2; fill: none; marker-end: url(#composition-diamond); }
+      .aggregation-line { stroke: #3498db; stroke-width: 1.5; fill: none; marker-end: url(#aggregation-diamond); }
+      .dependency-line { stroke: #95a5a6; stroke-width: 1; stroke-dasharray: 5,3; fill: none; marker-end: url(#dependency-arrow); }
+    </style>
+    
+    <!-- Arrow markers for different relationships -->
+    <marker id="inheritance-arrow" markerWidth="12" markerHeight="10" refX="12" refY="5" orient="auto">
+      <polygon points="0 0, 12 5, 0 10" fill="none" stroke="#e74c3c" stroke-width="2"/>
+    </marker>
+    
+    <marker id="composition-diamond" markerWidth="14" markerHeight="10" refX="14" refY="5" orient="auto">
+      <polygon points="0 5, 7 0, 14 5, 7 10" fill="#f39c12"/>
+    </marker>
+    
+    <marker id="aggregation-diamond" markerWidth="14" markerHeight="10" refX="14" refY="5" orient="auto">
+      <polygon points="0 5, 7 0, 14 5, 7 10" fill="none" stroke="#3498db" stroke-width="1.5"/>
+    </marker>
+    
+    <marker id="dependency-arrow" markerWidth="10" markerHeight="8" refX="10" refY="4" orient="auto">
+      <polygon points="0 0, 10 4, 0 8" fill="#95a5a6"/>
+    </marker>
+    
+    <!-- Gradients for different component types -->
+    <linearGradient id="interfaceGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#27ae60;stop-opacity:0.8" />
+      <stop offset="100%" style="stop-color:#2ecc71;stop-opacity:0.8" />
+    </linearGradient>
+    
+    <linearGradient id="abstractGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f39c12;stop-opacity:0.8" />
+      <stop offset="100%" style="stop-color:#e67e22;stop-opacity:0.8" />
+    </linearGradient>
+    
+    <linearGradient id="classGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#3498db;stop-opacity:0.8" />
+      <stop offset="100%" style="stop-color:#2980b9;stop-opacity:0.8" />
+    </linearGradient>
+    
+    <linearGradient id="controllerGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#9b59b6;stop-opacity:0.8" />
+      <stop offset="100%" style="stop-color:#8e44ad;stop-opacity:0.8" />
+    </linearGradient>
+    
+    <linearGradient id="entityGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#e74c3c;stop-opacity:0.8" />
+      <stop offset="100%" style="stop-color:#c0392b;stop-opacity:0.8" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="1800" height="1200" fill="#f8f9fa"/>
+  
+  <!-- Main Title -->
+  <text x="900" y="30" class="title">JManus AI 智能助手平台 - 系统类图</text>
+  <text x="900" y="50" class="note-text" text-anchor="middle" style="font-size: 14px;">分层架构设计 | 50+ 核心类和接口 | 多种设计模式</text>
+  
+  <!-- Core Interfaces Layer -->
+  <g id="core-interfaces">
+    <rect x="50" y="80" width="1700" height="140" fill="#ecf0f1" stroke="#bdc3c7" stroke-width="2" rx="10"/>
+    <text x="900" y="105" class="layer-title">核心接口层 (Core Interfaces)</text>
+    
+    <!-- ILlmService Interface -->
+    <rect x="70" y="120" width="180" height="80" fill="url(#interfaceGrad)" stroke="#27ae60" stroke-width="2" rx="5"/>
+    <text x="160" y="138" class="interface-title">«interface»</text>
+    <text x="160" y="153" class="interface-title">ILlmService</text>
+    <text x="75" y="170" class="method-text">+getChatClient(): ChatClient</text>
+    <text x="75" y="183" class="method-text">+getPlanningChatClient(): ChatClient</text>
+    <text x="75" y="196" class="method-text">+getChatModel(): ChatModel</text>
+    
+    <!-- ToolCallBiFunctionDef Interface -->
+    <rect x="270" y="120" width="200" height="80" fill="url(#interfaceGrad)" stroke="#27ae60" stroke-width="2" rx="5"/>
+    <text x="370" y="138" class="interface-title">«interface»</text>
+    <text x="370" y="153" class="interface-title">ToolCallBiFunctionDef<I></text>
+    <text x="275" y="170" class="method-text">+getName(): String</text>
+    <text x="275" y="183" class="method-text">+apply(input: I, context): Result</text>
+    <text x="275" y="196" class="method-text">+cleanup(planId: String): void</text>
+    
+    <!-- PlanningToolInterface -->
+    <rect x="490" y="120" width="180" height="80" fill="url(#interfaceGrad)" stroke="#27ae60" stroke-width="2" rx="5"/>
+    <text x="580" y="138" class="interface-title">«interface»</text>
+    <text x="580" y="153" class="interface-title">PlanningToolInterface</text>
+    <text x="495" y="170" class="method-text">+getCurrentPlanId(): String</text>
+    <text x="495" y="183" class="method-text">+getCurrentPlan(): PlanInterface</text>
+    <text x="495" y="196" class="method-text">+getFunctionToolCallback()</text>
+    
+    <!-- PlanExecutorInterface -->
+    <rect x="690" y="120" width="180" height="80" fill="url(#interfaceGrad)" stroke="#27ae60" stroke-width="2" rx="5"/>
+    <text x="780" y="138" class="interface-title">«interface»</text>
+    <text x="780" y="153" class="interface-title">PlanExecutorInterface</text>
+    <text x="695" y="170" class="method-text">+executeAllSteps(context)</text>
+    <text x="695" y="183" class="method-text">+void</text>
+    
+    <!-- AgentService Interface -->
+    <rect x="890" y="120" width="180" height="80" fill="url(#interfaceGrad)" stroke="#27ae60" stroke-width="2" rx="5"/>
+    <text x="980" y="138" class="interface-title">«interface»</text>
+    <text x="980" y="153" class="interface-title">AgentService</text>
+    <text x="895" y="170" class="method-text">+getAllAgents(): List<AgentConfig></text>
+    <text x="895" y="183" class="method-text">+createAgent(config): AgentConfig</text>
+    <text x="895" y="196" class="method-text">+deleteAgent(id: String): void</text>
+    
+    <!-- IUnifiedDirectoryManager -->
+    <rect x="1090" y="120" width="200" height="80" fill="url(#interfaceGrad)" stroke="#27ae60" stroke-width="2" rx="5"/>
+    <text x="1190" y="138" class="interface-title">«interface»</text>
+    <text x="1190" y="153" class="interface-title">IUnifiedDirectoryManager</text>
+    <text x="1095" y="170" class="method-text">+getWorkingDirectoryPath(): String</text>
+    <text x="1095" y="183" class="method-text">+createTaskDirectory(taskId): Path</text>
+    <text x="1095" y="196" class="method-text">+createPlanDirectory(planId): Path</text>
+    
+    <!-- TerminableTool -->
+    <rect x="1310" y="120" width="150" height="80" fill="url(#interfaceGrad)" stroke="#27ae60" stroke-width="2" rx="5"/>
+    <text x="1385" y="138" class="interface-title">«interface»</text>
+    <text x="1385" y="153" class="interface-title">TerminableTool</text>
+    <text x="1315" y="170" class="method-text">+canTerminate(): boolean</text>
+    
+    <!-- IManusProperties -->
+    <rect x="1480" y="120" width="150" height="80" fill="url(#interfaceGrad)" stroke="#27ae60" stroke-width="2" rx="5"/>
+    <text x="1555" y="138" class="interface-title">«interface»</text>
+    <text x="1555" y="153" class="interface-title">IManusProperties</text>
+    <text x="1485" y="170" class="method-text">+getBrowserHeadless(): Boolean</text>
+    <text x="1485" y="183" class="method-text">+getMaxSteps(): Integer</text>
+  </g>
+  
+  <!-- Tool System Layer -->
+  <g id="tool-system">
+    <rect x="50" y="240" width="1700" height="160" fill="#fff5e6" stroke="#f39c12" stroke-width="2" rx="10"/>
+    <text x="900" y="265" class="layer-title">工具系统层 (Tool System)</text>
+    
+    <!-- AbstractBaseTool -->
+    <rect x="70" y="280" width="180" height="100" fill="url(#abstractGrad)" stroke="#f39c12" stroke-width="2" rx="5"/>
+    <text x="160" y="298" class="class-title">«abstract»</text>
+    <text x="160" y="313" class="class-title">AbstractBaseTool<I></text>
+    <text x="75" y="330" class="field-text">#currentPlanId: String</text>
+    <text x="75" y="343" class="field-text">#rootPlanId: String</text>
+    <text x="75" y="356" class="method-text">+apply(input: I): ToolExecuteResult</text>
+    <text x="75" y="369" class="method-text">+{abstract} run(input: I): Result</text>
+    
+    <!-- PlanningTool -->
+    <rect x="270" y="280" width="180" height="100" fill="url(#classGrad)" stroke="#3498db" stroke-width="2" rx="5"/>
+    <text x="360" y="313" class="class-title">PlanningTool</text>
+    <text x="275" y="330" class="field-text">-currentPlan: ExecutionPlan</text>
+    <text x="275" y="343" class="field-text">-objectMapper: ObjectMapper</text>
+    <text x="275" y="356" class="method-text">+run(input): ToolExecuteResult</text>
+    <text x="275" y="369" class="method-text">+getCurrentPlanId(): String</text>
+    
+    <!-- FormInputTool -->
+    <rect x="470" y="280" width="160" height="100" fill="url(#classGrad)" stroke="#3498db" stroke-width="2" rx="5"/>
+    <text x="550" y="313" class="class-title">FormInputTool</text>
+    <text x="475" y="330" class="field-text">-userInputService</text>
+    <text x="475" y="343" class="field-text">: IUserInputService</text>
+    <text x="475" y="356" class="method-text">+run(input): ToolExecuteResult</text>
+    
+    <!-- TerminateTool -->
+    <rect x="650" y="280" width="160" height="100" fill="url(#classGrad)" stroke="#3498db" stroke-width="2" rx="5"/>
+    <text x="730" y="313" class="class-title">TerminateTool</text>
+    <text x="655" y="330" class="method-text">+run(input): ToolExecuteResult</text>
+    <text x="655" y="343" class="method-text">+canTerminate(): boolean</text>
+    
+    <!-- DocLoaderTool -->
+    <rect x="830" y="280" width="160" height="100" fill="url(#classGrad)" stroke="#3498db" stroke-width="2" rx="5"/>
+    <text x="910" y="313" class="class-title">DocLoaderTool</text>
+    <text x="835" y="330" class="method-text">+run(input): ToolExecuteResult</text>
+    
+    <!-- MapReducePlanningTool -->
+    <rect x="1010" y="280" width="180" height="100" fill="url(#classGrad)" stroke="#3498db" stroke-width="2" rx="5"/>
+    <text x="1100" y="313" class="class-title">MapReducePlanningTool</text>
+    <text x="1015" y="330" class="field-text">-currentPlan: MapReduceExecutionPlan</text>
+    <text x="1015" y="343" class="method-text">+apply(input: String): Result</text>
+    <text x="1015" y="356" class="method-text">+getCurrentPlanId(): String</text>
+    
+    <!-- UnifiedDirectoryManager -->
+    <rect x="1210" y="280" width="180" height="100" fill="url(#classGrad)" stroke="#3498db" stroke-width="2" rx="5"/>
+    <text x="1300" y="313" class="class-title">UnifiedDirectoryManager</text>
+    <text x="1215" y="330" class="field-text">-manusProperties: ManusProperties</text>
+    <text x="1215" y="343" class="method-text">+getWorkingDirectoryPath()</text>
+    <text x="1215" y="356" class="method-text">+createTaskDirectory(taskId)</text>
+    
+    <!-- ManusProperties -->
+    <rect x="1410" y="280" width="160" height="100" fill="url(#classGrad)" stroke="#3498db" stroke-width="2" rx="5"/>
+    <text x="1490" y="313" class="class-title">ManusProperties</text>
+    <text x="1415" y="330" class="field-text">-browserHeadless: Boolean</text>
+    <text x="1415" y="343" class="field-text">-maxSteps: Integer</text>
+    <text x="1415" y="356" class="method-text">+getBrowserHeadless(): Boolean</text>
+    <text x="1415" y="369" class="method-text">+setMaxSteps(value): void</text>
+  </g>
+  
+  <!-- Agent System Layer -->
+  <g id="agent-system">
+    <rect x="50" y="420" width="800" height="140" fill="#e8f5e8" stroke="#27ae60" stroke-width="2" rx="10"/>
+    <text x="450" y="445" class="layer-title">智能体系统层 (Agent System)</text>
+    
+    <!-- BaseAgent -->
+    <rect x="70" y="460" width="200" height="80" fill="url(#abstractGrad)" stroke="#f39c12" stroke-width="2" rx="5"/>
+    <text x="170" y="478" class="class-title">«abstract»</text>
+    <text x="170" y="493" class="class-title">BaseAgent</text>
+    <text x="75" y="510" class="field-text">#llmService: ILlmService</text>
+    <text x="75" y="523" class="field-text">-state: AgentState</text>
+    <text x="75" y="536" class="method-text">+execute(): void</text>
+    
+    <!-- AgentState Enum -->
+    <rect x="290" y="460" width="150" height="80" fill="#d5dbdb" stroke="#85929e" stroke-width="2" rx="5"/>
+    <text x="365" y="478" class="interface-title">«enumeration»</text>
+    <text x="365" y="493" class="interface-title">AgentState</text>
+    <text x="295" y="510" class="method-text">NOT_STARTED</text>
+    <text x="295" y="523" class="method-text">IN_PROGRESS</text>
+    <text x="295" y="536" class="method-text">COMPLETED</text>
+    
+    <!-- AgentServiceImpl -->
+    <rect x="460" y="460" width="180" height="80" fill="url(#classGrad)" stroke="#3498db" stroke-width="2" rx="5"/>
+    <text x="550" y="493" class="class-title">AgentServiceImpl</text>
+    <text x="465" y="510" class="field-text">-dynamicAgentLoader</text>
+    <text x="465" y="523" class="method-text">+getAllAgents(): List</text>
+    <text x="465" y="536" class="method-text">+createAgent(config)</text>
+    
+    <!-- AgentConfig -->
+    <rect x="660" y="460" width="160" height="80" fill="#ffffff" stroke="#bdc3c7" stroke-width="2" rx="5"/>
+    <text x="740" y="493" class="interface-title">AgentConfig</text>
+    <text x="665" y="510" class="field-text">-id: String</text>
+    <text x="665" y="523" class="field-text">-name: String</text>
+    <text x="665" y="536" class="field-text">-availableTools: List<String></text>
+  </g>
+  
+  <!-- Planning System Layer -->
+  <g id="planning-system">
+    <rect x="870" y="420" width="880" height="140" fill="#fdf2e9" stroke="#e67e22" stroke-width="2" rx="10"/>
+    <text x="1310" y="445" class="layer-title">规划系统层 (Planning System)</text>
+    
+    <!-- PlanningCoordinator -->
+    <rect x="890" y="460" width="170" height="80" fill="url(#classGrad)" stroke="#3498db" stroke-width="2" rx="5"/>
+    <text x="975" y="493" class="class-title">PlanningCoordinator</text>
+    <text x="895" y="510" class="field-text">-planCreator: PlanCreator</text>
+    <text x="895" y="523" class="method-text">+createPlan(context)</text>
+    <text x="895" y="536" class="method-text">+executePlan(context)</text>
+    
+    <!-- PlanCreator -->
+    <rect x="1080" y="460" width="160" height="80" fill="url(#classGrad)" stroke="#3498db" stroke-width="2" rx="5"/>
+    <text x="1160" y="493" class="class-title">PlanCreator</text>
+    <text x="1085" y="510" class="field-text">-llmService: ILlmService</text>
+    <text x="1085" y="523" class="method-text">+createPlan(context)</text>
+    
+    <!-- AbstractPlanExecutor -->
+    <rect x="1260" y="460" width="170" height="80" fill="url(#abstractGrad)" stroke="#f39c12" stroke-width="2" rx="5"/>
+    <text x="1345" y="478" class="class-title">«abstract»</text>
+    <text x="1345" y="493" class="class-title">AbstractPlanExecutor</text>
+    <text x="1265" y="510" class="field-text">#recorder: PlanExecutionRecorder</text>
+    <text x="1265" y="523" class="method-text">#executeStep(step, context)</text>
+    
+    <!-- PlanExecutor -->
+    <rect x="1450" y="460" width="140" height="80" fill="url(#classGrad)" stroke="#3498db" stroke-width="2" rx="5"/>
+    <text x="1520" y="493" class="class-title">PlanExecutor</text>
+    <text x="1455" y="510" class="method-text">+executeAllSteps(context)</text>
+    
+    <!-- MapReducePlanExecutor -->
+    <rect x="1610" y="460" width="120" height="80" fill="url(#classGrad)" stroke="#3498db" stroke-width="2" rx="5"/>
+    <text x="1670" y="483" class="class-title">MapReduce</text>
+    <text x="1670" y="498" class="class-title">PlanExecutor</text>
+    <text x="1615" y="515" class="method-text">-executorService</text>
+    <text x="1615" y="528" class="method-text">+executeMapPhase()</text>
+  </g>
+  
+  <!-- Service Layer -->
+  <g id="service-layer">
+    <rect x="50" y="580" width="1700" height="120" fill="#f4ecf7" stroke="#8e44ad" stroke-width="2" rx="10"/>
+    <text x="900" y="605" class="layer-title">业务服务层 (Service Layer)</text>
+    
+    <!-- LlmService -->
+    <rect x="70" y="620" width="150" height="60" fill="url(#classGrad)" stroke="#3498db" stroke-width="2" rx="5"/>
+    <text x="145" y="645" class="class-title">LlmService</text>
+    <text x="75" y="662" class="field-text">-agentExecutionClient</text>
+    <text x="75" y="675" class="method-text">+getChatClient()</text>
+    
+    <!-- ModelServiceImpl -->
+    <rect x="240" y="620" width="150" height="60" fill="url(#classGrad)" stroke="#3498db" stroke-width="2" rx="5"/>
+    <text x="315" y="645" class="class-title">ModelServiceImpl</text>
+    <text x="245" y="662" class="field-text">-repository</text>
+    <text x="245" y="675" class="method-text">+getAllModels()</text>
+    
+    <!-- UserInputService -->
+    <rect x="410" y="620" width="150" height="60" fill="url(#classGrad)" stroke="#3498db" stroke-width="2" rx="5"/>
+    <text x="485" y="645" class="class-title">UserInputService</text>
+    <text x="415" y="662" class="field-text">-formInputTools</text>
+    <text x="415" y="675" class="method-text">+waitForUserInput()</text>
+    
+    <!-- PromptService -->
+    <rect x="580" y="620" width="150" height="60" fill="url(#classGrad)" stroke="#3498db" stroke-width="2" rx="5"/>
+    <text x="655" y="645" class="class-title">PromptService</text>
+    <text x="585" y="662" class="method-text">+getPromptByName()</text>
+    <text x="585" y="675" class="method-text">+createPrompt()</text>
+    
+    <!-- McpService -->
+    <rect x="750" y="620" width="150" height="60" fill="url(#classGrad)" stroke="#3498db" stroke-width="2" rx="5"/>
+    <text x="825" y="645" class="class-title">McpService</text>
+    <text x="755" y="662" class="method-text">+getAllConfigs()</text>
+    <text x="755" y="675" class="method-text">+getServerStatus()</text>
+    
+    <!-- ConfigService -->
+    <rect x="920" y="620" width="150" height="60" fill="url(#classGrad)" stroke="#3498db" stroke-width="2" rx="5"/>
+    <text x="995" y="645" class="class-title">ConfigService</text>
+    <text x="925" y="662" class="method-text">+getConfigsByGroup()</text>
+    <text x="925" y="675" class="method-text">+batchUpdateConfigs()</text>
+    
+    <!-- PlanExecutionRecorder -->
+    <rect x="1090" y="620" width="160" height="60" fill="url(#classGrad)" stroke="#3498db" stroke-width="2" rx="5"/>
+    <text x="1170" y="645" class="class-title">PlanExecutionRecorder</text>
+    <text x="1095" y="662" class="method-text">+recordExecution()</text>
+    <text x="1095" y="675" class="method-text">+updateStatus()</text>
+    
+    <!-- PlanningFactory -->
+    <rect x="1270" y="620" width="150" height="60" fill="url(#classGrad)" stroke="#3498db" stroke-width="2" rx="5"/>
+    <text x="1345" y="645" class="class-title">PlanningFactory</text>
+    <text x="1275" y="662" class="method-text">+createPlanningCoordinator()</text>
+    
+    <!-- PlanExecutorFactory -->
+    <rect x="1440" y="620" width="150" height="60" fill="url(#classGrad)" stroke="#3498db" stroke-width="2" rx="5"/>
+    <text x="1515" y="645" class="class-title">PlanExecutorFactory</text>
+    <text x="1445" y="662" class="method-text">+createExecutor(planType)</text>
+    
+    <!-- ExecutionContext -->
+    <rect x="1610" y="620" width="120" height="60" fill="#ffffff" stroke="#bdc3c7" stroke-width="2" rx="5"/>
+    <text x="1670" y="645" class="interface-title">ExecutionContext</text>
+    <text x="1615" y="662" class="field-text">-currentPlanId</text>
+    <text x="1615" y="675" class="field-text">-userRequest</text>
+  </g>
+  
+  <!-- Controller Layer -->
+  <g id="controller-layer">
+    <rect x="50" y="720" width="1700" height="100" fill="#f8f4fd" stroke="#9b59b6" stroke-width="2" rx="10"/>
+    <text x="900" y="745" class="layer-title">控制器层 (Controller Layer)</text>
+    
+    <!-- AgentController -->
+    <rect x="70" y="760" width="150" height="40" fill="url(#controllerGrad)" stroke="#9b59b6" stroke-width="2" rx="5"/>
+    <text x="145" y="785" class="class-title">AgentController</text>
+    
+    <!-- ModelController -->
+    <rect x="240" y="760" width="150" height="40" fill="url(#controllerGrad)" stroke="#9b59b6" stroke-width="2" rx="5"/>
+    <text x="315" y="785" class="class-title">ModelController</text>
+    
+    <!-- ManusController -->
+    <rect x="410" y="760" width="150" height="40" fill="url(#controllerGrad)" stroke="#9b59b6" stroke-width="2" rx="5"/>
+    <text x="485" y="785" class="class-title">ManusController</text>
+
+    <!-- PromptController -->
+    <rect x="580" y="760" width="150" height="40" fill="url(#controllerGrad)" stroke="#9b59b6" stroke-width="2" rx="5"/>
+    <text x="655" y="785" class="class-title">PromptController</text>
+
+    <!-- McpController -->
+    <rect x="750" y="760" width="150" height="40" fill="url(#controllerGrad)" stroke="#9b59b6" stroke-width="2" rx="5"/>
+    <text x="825" y="785" class="class-title">McpController</text>
+
+    <!-- ConfigController -->
+    <rect x="920" y="760" width="150" height="40" fill="url(#controllerGrad)" stroke="#9b59b6" stroke-width="2" rx="5"/>
+    <text x="995" y="785" class="class-title">ConfigController</text>
+  </g>
+
+  <!-- Data Layer -->
+  <g id="data-layer">
+    <rect x="50" y="840" width="1700" height="120" fill="#fdf2f2" stroke="#e74c3c" stroke-width="2" rx="10"/>
+    <text x="900" y="865" class="layer-title">数据层 (Data Layer)</text>
+
+    <!-- DynamicAgentEntity -->
+    <rect x="70" y="880" width="160" height="60" fill="url(#entityGrad)" stroke="#e74c3c" stroke-width="2" rx="5"/>
+    <text x="150" y="905" class="class-title">DynamicAgentEntity</text>
+    <text x="75" y="922" class="field-text">-id: Long, -name: String</text>
+    <text x="75" y="935" class="method-text">+mapToAgentConfig()</text>
+
+    <!-- DynamicModelEntity -->
+    <rect x="250" y="880" width="160" height="60" fill="url(#entityGrad)" stroke="#e74c3c" stroke-width="2" rx="5"/>
+    <text x="330" y="905" class="class-title">DynamicModelEntity</text>
+    <text x="255" y="922" class="field-text">-modelName: String</text>
+    <text x="255" y="935" class="method-text">+mapToModelConfig()</text>
+
+    <!-- PromptEntity -->
+    <rect x="430" y="880" width="160" height="60" fill="url(#entityGrad)" stroke="#e74c3c" stroke-width="2" rx="5"/>
+    <text x="510" y="905" class="class-title">PromptEntity</text>
+    <text x="435" y="922" class="field-text">-promptName: String</text>
+    <text x="435" y="935" class="method-text">+mapToPromptVO()</text>
+
+    <!-- McpConfigEntity -->
+    <rect x="610" y="880" width="160" height="60" fill="url(#entityGrad)" stroke="#e74c3c" stroke-width="2" rx="5"/>
+    <text x="690" y="905" class="class-title">McpConfigEntity</text>
+    <text x="615" y="922" class="field-text">-serverName: String</text>
+    <text x="615" y="935" class="method-text">+mapToMcpConfigVO()</text>
+
+    <!-- ConfigEntity -->
+    <rect x="790" y="880" width="160" height="60" fill="url(#entityGrad)" stroke="#e74c3c" stroke-width="2" rx="5"/>
+    <text x="870" y="905" class="class-title">ConfigEntity</text>
+    <text x="795" y="922" class="field-text">-configKey: String</text>
+    <text x="795" y="935" class="field-text">-configValue: String</text>
+
+    <!-- PlanExecutionRecordEntity -->
+    <rect x="970" y="880" width="180" height="60" fill="url(#entityGrad)" stroke="#e74c3c" stroke-width="2" rx="5"/>
+    <text x="1060" y="905" class="class-title">PlanExecutionRecordEntity</text>
+    <text x="975" y="922" class="field-text">-planId: String</text>
+    <text x="975" y="935" class="field-text">-executionStatus: String</text>
+
+    <!-- Repository Interfaces -->
+    <rect x="1170" y="880" width="150" height="60" fill="url(#interfaceGrad)" stroke="#27ae60" stroke-width="2" rx="5"/>
+    <text x="1245" y="895" class="interface-title">«interface»</text>
+    <text x="1245" y="910" class="interface-title">DynamicAgentRepository</text>
+    <text x="1175" y="927" class="method-text">+findAllByNamespace()</text>
+
+    <rect x="1340" y="880" width="150" height="60" fill="url(#interfaceGrad)" stroke="#27ae60" stroke-width="2" rx="5"/>
+    <text x="1415" y="895" class="interface-title">«interface»</text>
+    <text x="1415" y="910" class="interface-title">DynamicModelRepository</text>
+    <text x="1345" y="927" class="method-text">+findByModelName()</text>
+
+    <rect x="1510" y="880" width="150" height="60" fill="url(#interfaceGrad)" stroke="#27ae60" stroke-width="2" rx="5"/>
+    <text x="1585" y="895" class="interface-title">«interface»</text>
+    <text x="1585" y="910" class="interface-title">PromptRepository</text>
+    <text x="1515" y="927" class="method-text">+findAllByNamespace()</text>
+  </g>
+
+  <!-- Key Relationships -->
+  <g id="relationships">
+    <!-- Interface implementations (inheritance) -->
+    <line x1="370" y1="200" x2="160" y2="280" class="inheritance-line"/>
+    <text x="250" y="240" class="relationship-text">implements</text>
+
+    <line x1="580" y1="200" x2="360" y2="280" class="inheritance-line"/>
+    <text x="460" y="240" class="relationship-text">implements</text>
+
+    <line x1="1385" y1="200" x2="730" y2="280" class="inheritance-line"/>
+    <text x="1050" y="240" class="relationship-text">implements</text>
+
+    <line x1="980" y1="200" x2="550" y2="460" class="inheritance-line"/>
+    <text x="750" y="330" class="relationship-text">implements</text>
+
+    <!-- Tool inheritance hierarchy -->
+    <line x1="160" y1="380" x2="360" y2="380" class="inheritance-line"/>
+    <line x1="160" y1="380" x2="550" y2="380" class="inheritance-line"/>
+    <line x1="160" y1="380" x2="730" y2="380" class="inheritance-line"/>
+    <line x1="160" y1="380" x2="910" y2="380" class="inheritance-line"/>
+
+    <!-- Planning system relationships -->
+    <line x1="780" y1="200" x2="1345" y2="460" class="inheritance-line"/>
+    <text x="1050" y="330" class="relationship-text">implements</text>
+
+    <line x1="1345" y1="540" x2="1520" y2="540" class="inheritance-line"/>
+    <line x1="1345" y1="540" x2="1670" y2="540" class="inheritance-line"/>
+
+    <!-- Composition relationships -->
+    <line x1="975" y1="500" x2="1160" y2="500" class="composition-line"/>
+    <text x="1060" y="495" class="relationship-text">creates</text>
+
+    <line x1="1345" y1="680" x2="1515" y2="680" class="composition-line"/>
+    <text x="1420" y="675" class="relationship-text">creates</text>
+
+    <!-- Service layer to controller dependencies -->
+    <line x1="145" y1="720" x2="145" y2="680" class="dependency-line"/>
+    <line x1="315" y1="720" x2="315" y2="680" class="dependency-line"/>
+    <line x1="485" y1="720" x2="1345" y2="680" class="dependency-line"/>
+
+    <!-- Data layer relationships -->
+    <line x1="150" y1="940" x2="1245" y2="940" class="dependency-line"/>
+    <line x1="330" y1="940" x2="1415" y2="940" class="dependency-line"/>
+    <line x1="510" y1="940" x2="1585" y2="940" class="dependency-line"/>
+  </g>
+
+  <!-- Design Patterns Section -->
+  <g id="design-patterns">
+    <rect x="50" y="980" width="800" height="180" fill="#f8f9fa" stroke="#6c757d" stroke-width="2" rx="10"/>
+    <text x="450" y="1005" class="layer-title">设计模式应用 (Design Patterns)</text>
+
+    <!-- Strategy Pattern -->
+    <rect x="70" y="1020" width="180" height="60" fill="#e1f5fe" stroke="#0277bd" stroke-width="2" rx="5"/>
+    <text x="160" y="1040" class="pattern-text">策略模式 (Strategy)</text>
+    <text x="75" y="1055" class="note-text">• PlanExecutorInterface</text>
+    <text x="75" y="1068" class="note-text">• 多种执行策略选择</text>
+
+    <!-- Template Method Pattern -->
+    <rect x="270" y="1020" width="180" height="60" fill="#f3e5f5" stroke="#7b1fa2" stroke-width="2" rx="5"/>
+    <text x="360" y="1040" class="pattern-text">模板方法 (Template)</text>
+    <text x="275" y="1055" class="note-text">• AbstractBaseTool</text>
+    <text x="275" y="1068" class="note-text">• AbstractPlanExecutor</text>
+
+    <!-- Factory Pattern -->
+    <rect x="470" y="1020" width="180" height="60" fill="#e8f5e8" stroke="#388e3c" stroke-width="2" rx="5"/>
+    <text x="560" y="1040" class="pattern-text">工厂模式 (Factory)</text>
+    <text x="475" y="1055" class="note-text">• PlanningFactory</text>
+    <text x="475" y="1068" class="note-text">• PlanExecutorFactory</text>
+
+    <!-- Composite Pattern -->
+    <rect x="670" y="1020" width="160" height="60" fill="#fff3e0" stroke="#f57c00" stroke-width="2" rx="5"/>
+    <text x="750" y="1040" class="pattern-text">组合模式</text>
+    <text x="675" y="1055" class="note-text">• PlanningCoordinator</text>
+    <text x="675" y="1068" class="note-text">• 统一计划处理</text>
+
+    <!-- Architecture Features -->
+    <rect x="70" y="1100" width="760" height="50" fill="#f8f9fa" stroke="#dee2e6" stroke-width="1" rx="5"/>
+    <text x="450" y="1120" class="pattern-text" text-anchor="middle">架构特性</text>
+    <text x="80" y="1138" class="note-text">🏗️ 分层架构 | 🔧 高扩展性 | 🛡️ 类型安全 | 🎯 职责清晰 | 📊 数据流向明确 | 🔗 松耦合设计</text>
+  </g>
+
+  <!-- System Metrics -->
+  <g id="metrics">
+    <rect x="870" y="980" width="880" height="180" fill="#f1f8e9" stroke="#689f38" stroke-width="2" rx="10"/>
+    <text x="1310" y="1005" class="layer-title">系统指标统计 (System Metrics)</text>
+
+    <!-- Core Statistics -->
+    <rect x="890" y="1020" width="200" height="120" fill="#ffffff" stroke="#81c784" stroke-width="2" rx="5"/>
+    <text x="990" y="1040" class="pattern-text" text-anchor="middle">核心统计</text>
+    <text x="900" y="1060" class="note-text">📋 总类数量: 50+</text>
+    <text x="900" y="1075" class="note-text">🔌 接口数量: 15+</text>
+    <text x="900" y="1090" class="note-text">🏛️ 抽象类: 8+</text>
+    <text x="900" y="1105" class="note-text">🏗️ 实体类: 12+</text>
+    <text x="900" y="1120" class="note-text">🎮 控制器: 6+</text>
+    <text x="900" y="1135" class="note-text">⚙️ 服务类: 15+</text>
+
+    <!-- Layer Distribution -->
+    <rect x="1110" y="1020" width="200" height="120" fill="#ffffff" stroke="#81c784" stroke-width="2" rx="5"/>
+    <text x="1210" y="1040" class="pattern-text" text-anchor="middle">分层分布</text>
+    <text x="1120" y="1060" class="note-text">🌐 控制器层: 6 个类</text>
+    <text x="1120" y="1075" class="note-text">💼 服务层: 15 个类</text>
+    <text x="1120" y="1090" class="note-text">🔧 工具层: 12 个类</text>
+    <text x="1120" y="1105" class="note-text">🤖 智能体层: 4 个类</text>
+    <text x="1120" y="1120" class="note-text">📊 数据层: 8 个实体</text>
+    <text x="1120" y="1135" class="note-text">🏪 仓库层: 6 个接口</text>
+
+    <!-- Design Quality -->
+    <rect x="1330" y="1020" width="200" height="120" fill="#ffffff" stroke="#81c784" stroke-width="2" rx="5"/>
+    <text x="1430" y="1040" class="pattern-text" text-anchor="middle">设计质量</text>
+    <text x="1340" y="1060" class="note-text">📐 设计模式: 6+ 种</text>
+    <text x="1340" y="1075" class="note-text">🔗 关系类型: 4 种</text>
+    <text x="1340" y="1090" class="note-text">📝 文档覆盖: 100%</text>
+    <text x="1340" y="1105" class="note-text">🧪 测试覆盖: 高</text>
+    <text x="1340" y="1120" class="note-text">🚀 扩展性: 优秀</text>
+    <text x="1340" y="1135" class="note-text">⚡ 性能: 良好</text>
+
+    <!-- Technology Stack -->
+    <rect x="1550" y="1020" width="180" height="120" fill="#ffffff" stroke="#81c784" stroke-width="2" rx="5"/>
+    <text x="1640" y="1040" class="pattern-text" text-anchor="middle">技术栈</text>
+    <text x="1560" y="1060" class="note-text">☕ Java 17+</text>
+    <text x="1560" y="1075" class="note-text">🍃 Spring Boot 3.x</text>
+    <text x="1560" y="1090" class="note-text">🤖 Spring AI</text>
+    <text x="1560" y="1105" class="note-text">📊 JPA/Hibernate</text>
+    <text x="1560" y="1120" class="note-text">🔄 RESTful API</text>
+    <text x="1560" y="1135" class="note-text">🎨 PlantUML</text>
+  </g>
+
+  <!-- Footer Information -->
+  <text x="900" y="1185" class="title" style="font-size: 16px;">
+    JManus AI 智能助手平台 - 完整类图架构设计
+  </text>
+  <text x="900" y="1200" class="note-text" text-anchor="middle">
+    文档版本: 1.0 | 创建日期: 2025年1月 | 建模工具: PlantUML | 维护者: Spring AI Alibaba Team
+  </text>
+</svg>

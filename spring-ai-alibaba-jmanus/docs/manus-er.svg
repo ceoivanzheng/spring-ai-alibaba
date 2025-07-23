@@ -1,0 +1,213 @@
+<svg width="1200" height="800" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      .title { font-family: Arial, sans-serif; font-size: 18px; font-weight: bold; fill: #2c3e50; }
+      .table-header { font-family: Arial, sans-serif; font-size: 14px; font-weight: bold; fill: #ffffff; }
+      .table-field { font-family: Arial, sans-serif; font-size: 11px; fill: #2c3e50; }
+      .pk-field { font-family: Arial, sans-serif; font-size: 11px; fill: #e74c3c; font-weight: bold; }
+      .fk-field { font-family: Arial, sans-serif; font-size: 11px; fill: #3498db; }
+      .relation-line { stroke: #34495e; stroke-width: 2; fill: none; }
+      .relation-text { font-family: Arial, sans-serif; font-size: 10px; fill: #7f8c8d; }
+    </style>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="1200" height="800" fill="#f8f9fa"/>
+  
+  <!-- Title -->
+  <text x="600" y="30" class="title" text-anchor="middle">JManus 数据库 ER 图</text>
+  
+  <!-- Core Configuration Tables -->
+  <!-- dynamic_models table -->
+  <g id="dynamic_models">
+    <rect x="50" y="60" width="200" height="120" fill="#3498db" stroke="#2980b9" stroke-width="2"/>
+    <text x="150" y="78" class="table-header" text-anchor="middle">dynamic_models</text>
+    <rect x="50" y="80" width="200" height="100" fill="#ffffff" stroke="#2980b9"/>
+    <text x="55" y="95" class="pk-field">🔑 id: BIGINT</text>
+    <text x="55" y="110" class="table-field">type: VARCHAR(50)</text>
+    <text x="55" y="125" class="table-field">model_name: VARCHAR(255)</text>
+    <text x="55" y="140" class="table-field">provider: VARCHAR(100)</text>
+    <text x="55" y="155" class="table-field">configuration: TEXT</text>
+    <text x="55" y="170" class="table-field">is_active: BOOLEAN</text>
+  </g>
+  
+  <!-- dynamic_agent table -->
+  <g id="dynamic_agent">
+    <rect x="300" y="60" width="220" height="140" fill="#e74c3c" stroke="#c0392b" stroke-width="2"/>
+    <text x="410" y="78" class="table-header" text-anchor="middle">dynamic_agent</text>
+    <rect x="300" y="80" width="220" height="120" fill="#ffffff" stroke="#c0392b"/>
+    <text x="305" y="95" class="pk-field">🔑 id: BIGINT</text>
+    <text x="305" y="110" class="table-field">agent_name: VARCHAR(255)</text>
+    <text x="305" y="125" class="table-field">agent_description: VARCHAR(1000)</text>
+    <text x="305" y="140" class="table-field">next_step_prompt: TEXT</text>
+    <text x="305" y="155" class="table-field">class_name: VARCHAR(255)</text>
+    <text x="305" y="170" class="fk-field">🔗 model_id: BIGINT</text>
+    <text x="305" y="185" class="table-field">namespace: VARCHAR(255)</text>
+  </g>
+  
+  <!-- dynamic_agent_tools table -->
+  <g id="dynamic_agent_tools">
+    <rect x="570" y="60" width="180" height="80" fill="#f39c12" stroke="#e67e22" stroke-width="2"/>
+    <text x="660" y="78" class="table-header" text-anchor="middle">dynamic_agent_tools</text>
+    <rect x="570" y="80" width="180" height="60" fill="#ffffff" stroke="#e67e22"/>
+    <text x="575" y="95" class="fk-field">🔗 agent_id: BIGINT</text>
+    <text x="575" y="110" class="table-field">tool_key: VARCHAR(255)</text>
+  </g>
+  
+  <!-- plan_template table -->
+  <g id="plan_template">
+    <rect x="800" y="60" width="180" height="120" fill="#9b59b6" stroke="#8e44ad" stroke-width="2"/>
+    <text x="890" y="78" class="table-header" text-anchor="middle">plan_template</text>
+    <rect x="800" y="80" width="180" height="100" fill="#ffffff" stroke="#8e44ad"/>
+    <text x="805" y="95" class="pk-field">🔑 id: BIGINT</text>
+    <text x="805" y="110" class="table-field">template_name: VARCHAR(255)</text>
+    <text x="805" y="125" class="table-field">template_description: TEXT</text>
+    <text x="805" y="140" class="table-field">template_content: TEXT</text>
+    <text x="805" y="155" class="table-field">template_type: VARCHAR(50)</text>
+    <text x="805" y="170" class="table-field">is_active: BOOLEAN</text>
+  </g>
+  
+  <!-- Execution Record Tables -->
+  <!-- plan_execution_record table -->
+  <g id="plan_execution_record">
+    <rect x="50" y="220" width="250" height="160" fill="#16a085" stroke="#138b75" stroke-width="2"/>
+    <text x="175" y="238" class="table-header" text-anchor="middle">plan_execution_record</text>
+    <rect x="50" y="240" width="250" height="140" fill="#ffffff" stroke="#138b75"/>
+    <text x="55" y="255" class="pk-field">🔑 id: BIGINT</text>
+    <text x="55" y="270" class="table-field">current_plan_id: VARCHAR(255)</text>
+    <text x="55" y="285" class="table-field">root_plan_id: VARCHAR(255)</text>
+    <text x="55" y="300" class="fk-field">🔗 think_act_record_id: BIGINT</text>
+    <text x="55" y="315" class="table-field">title: VARCHAR(500)</text>
+    <text x="55" y="330" class="table-field">user_request: TEXT</text>
+    <text x="55" y="345" class="table-field">steps: TEXT (JSON)</text>
+    <text x="55" y="360" class="table-field">current_step_index: INTEGER</text>
+    <text x="55" y="375" class="table-field">completed: BOOLEAN</text>
+  </g>
+  
+  <!-- agent_execution_record table -->
+  <g id="agent_execution_record">
+    <rect x="350" y="220" width="230" height="160" fill="#27ae60" stroke="#229954" stroke-width="2"/>
+    <text x="465" y="238" class="table-header" text-anchor="middle">agent_execution_record</text>
+    <rect x="350" y="240" width="230" height="140" fill="#ffffff" stroke="#229954"/>
+    <text x="355" y="255" class="pk-field">🔑 id: BIGINT</text>
+    <text x="355" y="270" class="table-field">conversation_id: VARCHAR(255)</text>
+    <text x="355" y="285" class="table-field">agent_name: VARCHAR(255)</text>
+    <text x="355" y="300" class="table-field">start_time: TIMESTAMP</text>
+    <text x="355" y="315" class="table-field">end_time: TIMESTAMP</text>
+    <text x="355" y="330" class="table-field">max_steps: INTEGER</text>
+    <text x="355" y="345" class="table-field">current_step: INTEGER</text>
+    <text x="355" y="360" class="table-field">status: VARCHAR(20)</text>
+    <text x="355" y="375" class="table-field">is_completed: BOOLEAN</text>
+  </g>
+  
+  <!-- think_act_record table -->
+  <g id="think_act_record">
+    <rect x="630" y="220" width="220" height="180" fill="#e67e22" stroke="#d35400" stroke-width="2"/>
+    <text x="740" y="238" class="table-header" text-anchor="middle">think_act_record</text>
+    <rect x="630" y="240" width="220" height="160" fill="#ffffff" stroke="#d35400"/>
+    <text x="635" y="255" class="pk-field">🔑 id: BIGINT</text>
+    <text x="635" y="270" class="fk-field">🔗 plan_execution_record_id</text>
+    <text x="635" y="285" class="fk-field">🔗 agent_execution_record_id</text>
+    <text x="635" y="300" class="table-field">step_name: VARCHAR(255)</text>
+    <text x="635" y="315" class="table-field">think_start_time: TIMESTAMP</text>
+    <text x="635" y="330" class="table-field">think_end_time: TIMESTAMP</text>
+    <text x="635" y="345" class="table-field">act_start_time: TIMESTAMP</text>
+    <text x="635" y="360" class="table-field">act_end_time: TIMESTAMP</text>
+    <text x="635" y="375" class="table-field">status: VARCHAR(50)</text>
+    <text x="635" y="390" class="table-field">step_index: INTEGER</text>
+  </g>
+  
+  <!-- act_tool_info table -->
+  <g id="act_tool_info">
+    <rect x="900" y="220" width="200" height="140" fill="#8e44ad" stroke="#7d3c98" stroke-width="2"/>
+    <text x="1000" y="238" class="table-header" text-anchor="middle">act_tool_info</text>
+    <rect x="900" y="240" width="200" height="120" fill="#ffffff" stroke="#7d3c98"/>
+    <text x="905" y="255" class="pk-field">🔑 id: BIGINT</text>
+    <text x="905" y="270" class="fk-field">🔗 think_act_record_id</text>
+    <text x="905" y="285" class="table-field">name: VARCHAR(255)</text>
+    <text x="905" y="300" class="table-field">parameters: TEXT</text>
+    <text x="905" y="315" class="table-field">result: TEXT</text>
+    <text x="905" y="330" class="table-field">status: VARCHAR(20)</text>
+    <text x="905" y="345" class="table-field">execution_time_ms: INTEGER</text>
+  </g>
+  
+  <!-- Configuration Tables -->
+  <!-- prompt table -->
+  <g id="prompt">
+    <rect x="50" y="420" width="180" height="140" fill="#2c3e50" stroke="#1b2631" stroke-width="2"/>
+    <text x="140" y="438" class="table-header" text-anchor="middle">prompt</text>
+    <rect x="50" y="440" width="180" height="120" fill="#ffffff" stroke="#1b2631"/>
+    <text x="55" y="455" class="pk-field">🔑 id: BIGINT</text>
+    <text x="55" y="470" class="table-field">prompt_name: VARCHAR(255)</text>
+    <text x="55" y="485" class="table-field">namespace: VARCHAR(255)</text>
+    <text x="55" y="500" class="table-field">message_type: VARCHAR(50)</text>
+    <text x="55" y="515" class="table-field">type: VARCHAR(50)</text>
+    <text x="55" y="530" class="table-field">prompt_content: TEXT</text>
+    <text x="55" y="545" class="table-field">is_active: BOOLEAN</text>
+  </g>
+  
+  <!-- mcp_config table -->
+  <g id="mcp_config">
+    <rect x="280" y="420" width="200" height="120" fill="#34495e" stroke="#2c3e50" stroke-width="2"/>
+    <text x="380" y="438" class="table-header" text-anchor="middle">mcp_config</text>
+    <rect x="280" y="440" width="200" height="100" fill="#ffffff" stroke="#2c3e50"/>
+    <text x="285" y="455" class="pk-field">🔑 id: BIGINT</text>
+    <text x="285" y="470" class="table-field">mcp_server_name: VARCHAR(255)</text>
+    <text x="285" y="485" class="table-field">connection_type: VARCHAR(20)</text>
+    <text x="285" y="500" class="table-field">connection_config: VARCHAR(4000)</text>
+    <text x="285" y="515" class="table-field">created_at: TIMESTAMP</text>
+    <text x="285" y="530" class="table-field">updated_at: TIMESTAMP</text>
+  </g>
+  
+  <!-- system_config table -->
+  <g id="system_config">
+    <rect x="530" y="420" width="200" height="140" fill="#7f8c8d" stroke="#566573" stroke-width="2"/>
+    <text x="630" y="438" class="table-header" text-anchor="middle">system_config</text>
+    <rect x="530" y="440" width="200" height="120" fill="#ffffff" stroke="#566573"/>
+    <text x="535" y="455" class="pk-field">🔑 id: BIGINT</text>
+    <text x="535" y="470" class="table-field">config_group: VARCHAR(255)</text>
+    <text x="535" y="485" class="table-field">config_sub_group: VARCHAR(255)</text>
+    <text x="535" y="500" class="table-field">config_key: VARCHAR(255)</text>
+    <text x="535" y="515" class="table-field">config_path: VARCHAR(255)</text>
+    <text x="535" y="530" class="table-field">config_value: TEXT</text>
+    <text x="535" y="545" class="table-field">input_type: VARCHAR(50)</text>
+  </g>
+  
+  <!-- Relationships -->
+  <!-- dynamic_agent to dynamic_models -->
+  <line x1="300" y1="170" x2="250" y2="120" class="relation-line"/>
+  <text x="275" y="140" class="relation-text">model_id</text>
+  
+  <!-- dynamic_agent to dynamic_agent_tools -->
+  <line x1="520" y1="100" x2="570" y2="100" class="relation-line"/>
+  <text x="535" y="95" class="relation-text">1:N</text>
+  
+  <!-- plan_execution_record to think_act_record -->
+  <line x1="300" y1="300" x2="630" y2="310" class="relation-line"/>
+  <text x="450" y="300" class="relation-text">1:N</text>
+  
+  <!-- agent_execution_record to think_act_record -->
+  <line x1="580" y1="310" x2="630" y2="310" class="relation-line"/>
+  <text x="595" y="305" class="relation-text">1:N</text>
+  
+  <!-- think_act_record to act_tool_info -->
+  <line x1="850" y1="310" x2="900" y2="310" class="relation-line"/>
+  <text x="865" y="305" class="relation-text">1:N</text>
+  
+  <!-- Legend -->
+  <g id="legend">
+    <rect x="780" y="420" width="380" height="140" fill="#ecf0f1" stroke="#bdc3c7" stroke-width="1"/>
+    <text x="970" y="440" class="table-header" text-anchor="middle" fill="#2c3e50">图例</text>
+    <text x="790" y="460" class="pk-field">🔑 主键 (Primary Key)</text>
+    <text x="790" y="480" class="fk-field">🔗 外键 (Foreign Key)</text>
+    <text x="790" y="500" class="table-field">● 普通字段 (Regular Field)</text>
+    <line x1="790" y1="520" x2="830" y2="520" class="relation-line"/>
+    <text x="840" y="525" class="relation-text">关系连接线</text>
+    <text x="790" y="545" class="relation-text">支持数据库: H2, MySQL, PostgreSQL</text>
+  </g>
+  
+  <!-- Database Info -->
+  <text x="600" y="720" class="relation-text" text-anchor="middle">JManus 支持多种数据库，通过 JPA/Hibernate 自动生成表结构</text>
+  <text x="600" y="740" class="relation-text" text-anchor="middle">核心功能：动态智能体管理、计划执行记录、思考-行动模式 (ReAct)</text>
+  <text x="600" y="760" class="relation-text" text-anchor="middle">文档版本: 1.0 | 维护者: Spring AI Alibaba Team</text>
+</svg>

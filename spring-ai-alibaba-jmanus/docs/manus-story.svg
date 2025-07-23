@@ -1,0 +1,369 @@
+<svg width="1600" height="1000" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      .title { font-family: Arial, sans-serif; font-size: 22px; font-weight: bold; fill: #2c3e50; text-anchor: middle; }
+      .section-title { font-family: Arial, sans-serif; font-size: 16px; font-weight: bold; fill: #34495e; }
+      .story-title { font-family: Arial, sans-serif; font-size: 12px; font-weight: bold; fill: #ffffff; text-anchor: middle; }
+      .story-text { font-family: Arial, sans-serif; font-size: 10px; fill: #2c3e50; }
+      .priority-high { fill: #e74c3c; }
+      .priority-medium { fill: #f39c12; }
+      .priority-low { fill: #27ae60; }
+      .flow-text { font-family: Arial, sans-serif; font-size: 10px; fill: #ffffff; text-anchor: middle; }
+      .component-text { font-family: Arial, sans-serif; font-size: 9px; fill: #2c3e50; text-anchor: middle; }
+      .user-type { font-family: Arial, sans-serif; font-size: 11px; fill: #8e44ad; font-weight: bold; }
+      .status-done { fill: #27ae60; }
+      .arrow { stroke: #7f8c8d; stroke-width: 2; fill: none; marker-end: url(#arrowhead); }
+    </style>
+    
+    <!-- Arrow marker definition -->
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#7f8c8d"/>
+    </marker>
+    
+    <!-- Gradients for user story cards -->
+    <linearGradient id="highPriorityGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#e74c3c;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#c0392b;stop-opacity:1" />
+    </linearGradient>
+    
+    <linearGradient id="mediumPriorityGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f39c12;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#e67e22;stop-opacity:1" />
+    </linearGradient>
+    
+    <linearGradient id="lowPriorityGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#27ae60;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#229954;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="1600" height="1000" fill="#f8f9fa"/>
+  
+  <!-- Main Title -->
+  <text x="800" y="30" class="title">JManus 用户故事设计与系统流程</text>
+  <text x="800" y="50" class="section-title" text-anchor="middle">多智能体协作系统的完整用户体验设计</text>
+  
+  <!-- User Stories Section -->
+  <text x="50" y="90" class="section-title">核心用户故事 (10个已实现)</text>
+  
+  <!-- High Priority Stories (Top Row) -->
+  <!-- Story 1: Task Input -->
+  <g id="story1">
+    <rect x="50" y="110" width="280" height="80" fill="url(#highPriorityGrad)" rx="8"/>
+    <text x="190" y="130" class="story-title">首页任务输入与执行</text>
+    <circle cx="70" cy="145" r="8" fill="#ffffff"/>
+    <text x="75" cy="150" class="story-text" text-anchor="middle" fill="#ffffff">1</text>
+    <text x="90" y="148" class="story-text" fill="#ffffff">用户角色: 普通用户</text>
+    <text x="90" y="162" class="story-text" fill="#ffffff">页面: home/index.vue</text>
+    <text x="90" y="176" class="story-text" fill="#ffffff">状态: ✅ 已实现 | 优先级: 高</text>
+  </g>
+  
+  <!-- Story 2: Chat Interaction -->
+  <g id="story2">
+    <rect x="350" y="110" width="280" height="80" fill="url(#highPriorityGrad)" rx="8"/>
+    <text x="490" y="130" class="story-title">智能体对话交互</text>
+    <circle cx="370" cy="145" r="8" fill="#ffffff"/>
+    <text x="375" cy="150" class="story-text" text-anchor="middle" fill="#ffffff">2</text>
+    <text x="390" y="148" class="story-text" fill="#ffffff">用户角色: 普通用户</text>
+    <text x="390" y="162" class="story-text" fill="#ffffff">页面: direct/index.vue</text>
+    <text x="390" y="176" class="story-text" fill="#ffffff">状态: ✅ 已实现 | 优先级: 高</text>
+  </g>
+  
+  <!-- Story 3: Agent Config -->
+  <g id="story3">
+    <rect x="650" y="110" width="280" height="80" fill="url(#highPriorityGrad)" rx="8"/>
+    <text x="790" y="130" class="story-title">智能体配置管理</text>
+    <circle cx="670" cy="145" r="8" fill="#ffffff"/>
+    <text x="675" cy="150" class="story-text" text-anchor="middle" fill="#ffffff">3</text>
+    <text x="690" y="148" class="story-text" fill="#ffffff">用户角色: 管理员</text>
+    <text x="690" y="162" class="story-text" fill="#ffffff">页面: configs/agentConfig.vue</text>
+    <text x="690" y="176" class="story-text" fill="#ffffff">状态: ✅ 已实现 | 优先级: 高</text>
+  </g>
+  
+  <!-- Story 4: Model Config -->
+  <g id="story4">
+    <rect x="950" y="110" width="280" height="80" fill="url(#highPriorityGrad)" rx="8"/>
+    <text x="1090" y="130" class="story-title">AI模型配置</text>
+    <circle cx="970" cy="145" r="8" fill="#ffffff"/>
+    <text x="975" cy="150" class="story-text" text-anchor="middle" fill="#ffffff">4</text>
+    <text x="990" y="148" class="story-text" fill="#ffffff">用户角色: 管理员</text>
+    <text x="990" y="162" class="story-text" fill="#ffffff">页面: configs/modelConfig.vue</text>
+    <text x="990" y="176" class="story-text" fill="#ffffff">状态: ✅ 已实现 | 优先级: 高</text>
+  </g>
+  
+  <!-- Medium Priority Stories (Second Row) -->
+  <!-- Story 5: MCP Config -->
+  <g id="story5">
+    <rect x="50" y="210" width="280" height="80" fill="url(#mediumPriorityGrad)" rx="8"/>
+    <text x="190" y="230" class="story-title">MCP服务器配置</text>
+    <circle cx="70" cy="245" r="8" fill="#ffffff"/>
+    <text x="75" cy="250" class="story-text" text-anchor="middle" fill="#ffffff">5</text>
+    <text x="90" y="248" class="story-text" fill="#ffffff">用户角色: 管理员</text>
+    <text x="90" y="262" class="story-text" fill="#ffffff">页面: configs/mcpConfig.vue</text>
+    <text x="90" y="276" class="story-text" fill="#ffffff">状态: ✅ 已实现 | 优先级: 中</text>
+  </g>
+  
+  <!-- Story 6: Prompt Config -->
+  <g id="story6">
+    <rect x="350" y="210" width="280" height="80" fill="url(#mediumPriorityGrad)" rx="8"/>
+    <text x="490" y="230" class="story-title">提示词模板管理</text>
+    <circle cx="370" cy="245" r="8" fill="#ffffff"/>
+    <text x="375" cy="250" class="story-text" text-anchor="middle" fill="#ffffff">6</text>
+    <text x="390" y="248" class="story-text" fill="#ffffff">用户角色: 管理员</text>
+    <text x="390" y="262" class="story-text" fill="#ffffff">页面: configs/dynamicPromptConfig.vue</text>
+    <text x="390" y="276" class="story-text" fill="#ffffff">状态: ✅ 已实现 | 优先级: 中</text>
+  </g>
+  
+  <!-- Story 7: Basic Config -->
+  <g id="story7">
+    <rect x="650" y="210" width="280" height="80" fill="url(#mediumPriorityGrad)" rx="8"/>
+    <text x="790" y="230" class="story-title">系统基础设置</text>
+    <circle cx="670" cy="245" r="8" fill="#ffffff"/>
+    <text x="675" cy="250" class="story-text" text-anchor="middle" fill="#ffffff">7</text>
+    <text x="690" y="248" class="story-text" fill="#ffffff">用户角色: 管理员</text>
+    <text x="690" y="262" class="story-text" fill="#ffffff">页面: configs/basicConfig.vue</text>
+    <text x="690" y="276" class="story-text" fill="#ffffff">状态: ✅ 已实现 | 优先级: 中</text>
+  </g>
+  
+  <!-- Story 8: Tool Selection -->
+  <g id="story8">
+    <rect x="950" y="210" width="280" height="80" fill="url(#mediumPriorityGrad)" rx="8"/>
+    <text x="1090" y="230" class="story-title">智能体工具选择</text>
+    <circle cx="970" cy="245" r="8" fill="#ffffff"/>
+    <text x="975" cy="250" class="story-text" text-anchor="middle" fill="#ffffff">8</text>
+    <text x="990" y="248" class="story-text" fill="#ffffff">用户角色: 普通用户</text>
+    <text x="990" y="262" class="story-text" fill="#ffffff">页面: tool-selection-modal/index.vue</text>
+    <text x="990" y="276" class="story-text" fill="#ffffff">状态: ✅ 已实现 | 优先级: 中</text>
+  </g>
+  
+  <!-- Low Priority Stories (Third Row) -->
+  <!-- Story 9: Language Switch -->
+  <g id="story9">
+    <rect x="50" y="310" width="280" height="80" fill="url(#lowPriorityGrad)" rx="8"/>
+    <text x="190" y="330" class="story-title">界面语言切换</text>
+    <circle cx="70" cy="345" r="8" fill="#ffffff"/>
+    <text x="75" cy="350" class="story-text" text-anchor="middle" fill="#ffffff">9</text>
+    <text x="90" y="348" class="story-text" fill="#ffffff">用户角色: 普通用户</text>
+    <text x="90" y="362" class="story-text" fill="#ffffff">页面: language-switcher/index.vue</text>
+    <text x="90" y="376" class="story-text" fill="#ffffff">状态: ✅ 已实现 | 优先级: 低</text>
+  </g>
+  
+  <!-- Story 10: Error Page -->
+  <g id="story10">
+    <rect x="350" y="310" width="280" height="80" fill="url(#lowPriorityGrad)" rx="8"/>
+    <text x="490" y="330" class="story-title">友好错误页面</text>
+    <circle cx="370" cy="345" r="8" fill="#ffffff"/>
+    <text x="375" cy="350" class="story-text" text-anchor="middle" fill="#ffffff">10</text>
+    <text x="390" y="348" class="story-text" fill="#ffffff">用户角色: 普通用户</text>
+    <text x="390" y="362" class="story-text" fill="#ffffff">页面: error/notFound.vue</text>
+    <text x="390" y="376" class="story-text" fill="#ffffff">状态: ✅ 已实现 | 优先级: 低</text>
+  </g>
+  
+  <!-- System Flow Section -->
+  <text x="50" y="440" class="section-title">系统整体用户流程</text>
+  
+  <!-- Main User Flow -->
+  <g id="user-flow">
+    <!-- Start Node -->
+    <ellipse cx="150" cy="480" rx="80" ry="25" fill="#3498db"/>
+    <text x="150" y="485" class="flow-text">用户访问系统</text>
+    
+    <!-- Home Page -->
+    <rect x="280" y="455" width="100" height="50" fill="#e74c3c" rx="8"/>
+    <text x="330" y="485" class="flow-text">首页</text>
+    
+    <!-- Task Input Branch -->
+    <rect x="420" y="420" width="100" height="40" fill="#f39c12" rx="5"/>
+    <text x="470" y="445" class="flow-text">任务输入</text>
+    
+    <!-- Config Branch -->
+    <rect x="420" y="490" width="100" height="40" fill="#9b59b6" rx="5"/>
+    <text x="470" y="515" class="flow-text">配置管理</text>
+    
+    <!-- Dialog Page -->
+    <rect x="560" y="420" width="100" height="40" fill="#e67e22" rx="5"/>
+    <text x="610" y="445" class="flow-text">对话页面</text>
+    
+    <!-- Execution -->
+    <rect x="700" y="420" width="100" height="40" fill="#27ae60" rx="5"/>
+    <text x="750" y="445" class="flow-text">执行计划</text>
+    
+    <!-- Result -->
+    <rect x="840" y="420" width="100" height="40" fill="#16a085" rx="5"/>
+    <text x="890" y="445" class="flow-text">查看结果</text>
+    
+    <!-- Config Components -->
+    <rect x="560" y="490" width="80" height="30" fill="#8e44ad" rx="3"/>
+    <text x="600" y="508" class="component-text">智能体配置</text>
+    
+    <rect x="560" y="530" width="80" height="30" fill="#8e44ad" rx="3"/>
+    <text x="600" y="548" class="component-text">模型配置</text>
+    
+    <rect x="660" y="490" width="80" height="30" fill="#8e44ad" rx="3"/>
+    <text x="700" y="508" class="component-text">MCP配置</text>
+    
+    <rect x="660" y="530" width="80" height="30" fill="#8e44ad" rx="3"/>
+    <text x="700" y="548" class="component-text">提示词配置</text>
+    
+    <!-- Flow Arrows -->
+    <line x1="230" y1="480" x2="280" y2="480" class="arrow"/>
+    <line x1="380" y1="470" x2="420" y2="450" class="arrow"/>
+    <line x1="380" y1="490" x2="420" y2="510" class="arrow"/>
+    <line x1="520" y1="440" x2="560" y2="440" class="arrow"/>
+    <line x1="660" y1="440" x2="700" y2="440" class="arrow"/>
+    <line x1="800" y1="440" x2="840" y2="440" class="arrow"/>
+    <line x1="520" y1="510" x2="560" y2="505" class="arrow"/>
+    
+    <!-- Return arrows -->
+    <path d="M 890 460 Q 950 480 950 520 Q 950 560 330 560 Q 280 560 280 520 Q 280 480 280 505" class="arrow"/>
+    <text x="620" y="575" class="component-text">新任务 / 继续对话</text>
+  </g>
+  
+  <!-- Component Architecture Section -->
+  <text x="50" y="620" class="section-title">页面组件架构</text>
+  
+  <!-- Home Component -->
+  <g id="home-component">
+    <rect x="50" y="640" width="120" height="100" fill="#3498db" stroke="#2980b9" stroke-width="2" rx="5"/>
+    <text x="110" y="660" class="story-title">首页组件</text>
+    <text x="55" y="680" class="component-text">• 欢迎界面</text>
+    <text x="55" y="695" class="component-text">• 任务输入框</text>
+    <text x="55" y="710" class="component-text">• 示例展示</text>
+    <text x="55" y="725" class="component-text">• 语言切换</text>
+  </g>
+  
+  <!-- Direct Component -->
+  <g id="direct-component">
+    <rect x="190" y="640" width="120" height="100" fill="#e74c3c" stroke="#c0392b" stroke-width="2" rx="5"/>
+    <text x="250" y="660" class="story-title">对话页面</text>
+    <text x="195" y="680" class="component-text">• 侧边栏</text>
+    <text x="195" y="695" class="component-text">• 对话容器</text>
+    <text x="195" y="710" class="component-text">• 输入区域</text>
+    <text x="195" y="725" class="component-text">• 执行详情</text>
+  </g>
+  
+  <!-- Config Component -->
+  <g id="config-component">
+    <rect x="330" y="640" width="120" height="100" fill="#9b59b6" stroke="#8e44ad" stroke-width="2" rx="5"/>
+    <text x="390" y="660" class="story-title">配置中心</text>
+    <text x="335" y="680" class="component-text">• 基础配置</text>
+    <text x="335" y="695" class="component-text">• 智能体管理</text>
+    <text x="335" y="710" class="component-text">• 模型配置</text>
+    <text x="335" y="725" class="component-text">• MCP配置</text>
+  </g>
+  
+  <!-- Tool Modal Component -->
+  <g id="tool-component">
+    <rect x="470" y="640" width="120" height="100" fill="#f39c12" stroke="#e67e22" stroke-width="2" rx="5"/>
+    <text x="530" y="660" class="story-title">工具选择</text>
+    <text x="475" y="680" class="component-text">• 工具分组</text>
+    <text x="475" y="695" class="component-text">• 搜索过滤</text>
+    <text x="475" y="710" class="component-text">• 批量选择</text>
+    <text x="475" y="725" class="component-text">• 状态管理</text>
+  </g>
+  
+  <!-- User Journey Section -->
+  <text x="50" y="780" class="section-title">用户旅程图</text>
+  
+  <!-- New User Journey -->
+  <g id="new-user-journey">
+    <rect x="50" y="800" width="600" height="80" fill="#ecf0f1" stroke="#bdc3c7" stroke-width="1" rx="5"/>
+    <text x="70" y="820" class="section-title" style="font-size: 14px;">新用户首次使用</text>
+    
+    <!-- Journey Steps -->
+    <circle cx="90" cy="840" r="15" fill="#3498db"/>
+    <text x="90" y="845" class="flow-text">1</text>
+    <text x="70" y="865" class="component-text">访问首页</text>
+    
+    <line x1="105" y1="840" x2="145" y2="840" class="arrow"/>
+    
+    <circle cx="160" cy="840" r="15" fill="#e74c3c"/>
+    <text x="160" y="845" class="flow-text">2</text>
+    <text x="140" y="865" class="component-text">输入任务</text>
+    
+    <line x1="175" y1="840" x2="215" y2="840" class="arrow"/>
+    
+    <circle cx="230" cy="840" r="15" fill="#f39c12"/>
+    <text x="230" y="845" class="flow-text">3</text>
+    <text x="210" y="865" class="component-text">查看执行</text>
+    
+    <line x1="245" y1="840" x2="285" y2="840" class="arrow"/>
+    
+    <circle cx="300" cy="840" r="15" fill="#27ae60"/>
+    <text x="300" y="845" class="flow-text">4</text>
+    <text x="280" y="865" class="component-text">获得结果</text>
+    
+    <line x1="315" y1="840" x2="355" y2="840" class="arrow"/>
+    
+    <circle cx="370" cy="840" r="15" fill="#9b59b6"/>
+    <text x="370" y="845" class="flow-text">5</text>
+    <text x="350" y="865" class="component-text">配置系统</text>
+    
+    <line x1="385" y1="840" x2="425" y2="840" class="arrow"/>
+    
+    <circle cx="440" cy="840" r="15" fill="#16a085"/>
+    <text x="440" y="845" class="flow-text">6</text>
+    <text x="420" y="865" class="component-text">熟练使用</text>
+  </g>
+  
+  <!-- Admin Journey -->
+  <g id="admin-journey">
+    <rect x="680" y="800" width="500" height="80" fill="#e8f5e8" stroke="#27ae60" stroke-width="1" rx="5"/>
+    <text x="700" y="820" class="section-title" style="font-size: 14px;">管理员配置系统</text>
+    
+    <circle cx="720" cy="840" r="15" fill="#e74c3c"/>
+    <text x="720" y="845" class="flow-text">1</text>
+    <text x="700" y="865" class="component-text">系统设置</text>
+    
+    <line x1="735" y1="840" x2="775" y2="840" class="arrow"/>
+    
+    <circle cx="790" cy="840" r="15" fill="#f39c12"/>
+    <text x="790" y="845" class="flow-text">2</text>
+    <text x="770" y="865" class="component-text">智能体管理</text>
+    
+    <line x1="805" y1="840" x2="845" y2="840" class="arrow"/>
+    
+    <circle cx="860" cy="840" r="15" fill="#3498db"/>
+    <text x="860" y="845" class="flow-text">3</text>
+    <text x="840" y="865" class="component-text">工具配置</text>
+    
+    <line x1="875" y1="840" x2="915" y2="840" class="arrow"/>
+    
+    <circle cx="930" cy="840" r="15" fill="#27ae60"/>
+    <text x="930" y="845" class="flow-text">4</text>
+    <text x="910" y="865" class="component-text">维护优化</text>
+  </g>
+  
+  <!-- Technology Stack Section -->
+  <text x="50" y="920" class="section-title">技术实现要点</text>
+  
+  <!-- State Management -->
+  <rect x="50" y="940" width="180" height="50" fill="#2c3e50" rx="5"/>
+  <text x="140" y="960" class="story-title">状态管理</text>
+  <text x="55" y="975" class="story-text" fill="#ffffff">• 任务存储 (Task Store)</text>
+  <text x="55" y="985" class="story-text" fill="#ffffff">• 侧边栏状态 (Sidebar Store)</text>
+  
+  <!-- API Integration -->
+  <rect x="250" y="940" width="180" height="50" fill="#34495e" rx="5"/>
+  <text x="340" y="960" class="story-title">API集成</text>
+  <text x="255" y="975" class="story-text" fill="#ffffff">• 6个核心API服务</text>
+  <text x="255" y="985" class="story-text" fill="#ffffff">• RESTful架构设计</text>
+  
+  <!-- Internationalization -->
+  <rect x="450" y="940" width="180" height="50" fill="#7f8c8d" rx="5"/>
+  <text x="540" y="960" class="story-title">国际化支持</text>
+  <text x="455" y="975" class="story-text" fill="#ffffff">• 中英文切换</text>
+  <text x="455" y="985" class="story-text" fill="#ffffff">• 动态语言组件</text>
+  
+  <!-- Responsive Design -->
+  <rect x="650" y="940" width="180" height="50" fill="#95a5a6" rx="5"/>
+  <text x="740" y="960" class="story-title">响应式设计</text>
+  <text x="655" y="975" class="story-text" fill="#ffffff">• 自适应布局</text>
+  <text x="655" y="985" class="story-text" fill="#ffffff">• 移动端友好</text>
+  
+  <!-- Footer Info -->
+  <text x="800" y="990" class="component-text" text-anchor="middle" style="font-size: 12px; fill: #7f8c8d;">
+    JManus 用户故事设计文档 | Vue3 + TypeScript | Spring AI Alibaba Team
+  </text>
+</svg>

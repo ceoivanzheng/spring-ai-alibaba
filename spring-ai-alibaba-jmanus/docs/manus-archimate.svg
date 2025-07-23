@@ -1,0 +1,457 @@
+<svg width="1600" height="1200" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      .main-title { font-family: Arial, sans-serif; font-size: 20px; font-weight: bold; fill: #2c3e50; text-anchor: middle; }
+      .layer-title { font-family: Arial, sans-serif; font-size: 14px; font-weight: bold; fill: #ffffff; text-anchor: middle; }
+      .component-title { font-family: Arial, sans-serif; font-size: 11px; font-weight: bold; fill: #2c3e50; text-anchor: middle; }
+      .component-desc { font-family: Arial, sans-serif; font-size: 9px; fill: #34495e; text-anchor: middle; }
+      .relationship-text { font-family: Arial, sans-serif; font-size: 8px; fill: #e74c3c; font-weight: bold; }
+      .legend-text { font-family: Arial, sans-serif; font-size: 10px; fill: #2c3e50; }
+      .note-text { font-family: Arial, sans-serif; font-size: 9px; fill: #7f8c8d; }
+      
+      .relation-line { stroke: #34495e; stroke-width: 1.5; fill: none; marker-end: url(#arrow-head); }
+      .composition-line { stroke: #e74c3c; stroke-width: 2; fill: none; marker-end: url(#diamond-head); }
+      .dependency-line { stroke: #3498db; stroke-width: 1; stroke-dasharray: 5,3; fill: none; marker-end: url(#arrow-head); }
+      .realization-line { stroke: #27ae60; stroke-width: 1; stroke-dasharray: 8,4; fill: none; marker-end: url(#triangle-head); }
+    </style>
+    
+    <!-- Arrow markers -->
+    <marker id="arrow-head" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#34495e"/>
+    </marker>
+    
+    <marker id="diamond-head" markerWidth="10" markerHeight="8" refX="10" refY="4" orient="auto">
+      <polygon points="0 4, 5 0, 10 4, 5 8" fill="#e74c3c"/>
+    </marker>
+    
+    <marker id="triangle-head" markerWidth="10" markerHeight="8" refX="10" refY="4" orient="auto">
+      <polygon points="0 0, 10 4, 0 8" fill="none" stroke="#27ae60" stroke-width="1"/>
+    </marker>
+    
+    <!-- Layer gradients -->
+    <linearGradient id="applicationGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#3498db;stop-opacity:0.8" />
+      <stop offset="100%" style="stop-color:#2980b9;stop-opacity:0.8" />
+    </linearGradient>
+    
+    <linearGradient id="businessGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#e74c3c;stop-opacity:0.8" />
+      <stop offset="100%" style="stop-color:#c0392b;stop-opacity:0.8" />
+    </linearGradient>
+    
+    <linearGradient id="technologyGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#27ae60;stop-opacity:0.8" />
+      <stop offset="100%" style="stop-color:#229954;stop-opacity:0.8" />
+    </linearGradient>
+    
+    <linearGradient id="infrastructureGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f39c12;stop-opacity:0.8" />
+      <stop offset="100%" style="stop-color:#e67e22;stop-opacity:0.8" />
+    </linearGradient>
+    
+    <linearGradient id="toolsGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#9b59b6;stop-opacity:0.8" />
+      <stop offset="100%" style="stop-color:#8e44ad;stop-opacity:0.8" />
+    </linearGradient>
+    
+    <linearGradient id="dataGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#16a085;stop-opacity:0.8" />
+      <stop offset="100%" style="stop-color:#138d75;stop-opacity:0.8" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="1600" height="1200" fill="#f8f9fa"/>
+  
+  <!-- Title -->
+  <text x="800" y="30" class="main-title">JManus 系统架构图 (ArchiMate)</text>
+  <text x="800" y="50" class="note-text" text-anchor="middle">多智能体协作系统 | 分层架构设计 | MCP协议集成 | Plan-Act模式执行</text>
+  
+  <!-- Application Layer -->
+  <g id="application-layer">
+    <rect x="50" y="80" width="1500" height="120" fill="url(#applicationGrad)" stroke="#2980b9" stroke-width="2" rx="10"/>
+    <text x="800" y="105" class="layer-title">应用层 (Application Layer)</text>
+    
+    <!-- Vue3 Web UI -->
+    <rect x="80" y="120" width="120" height="60" fill="#ffffff" stroke="#3498db" stroke-width="2" rx="8"/>
+    <text x="140" y="140" class="component-title">Vue3 Web UI</text>
+    <text x="140" y="155" class="component-desc">Web用户界面</text>
+    <text x="140" y="170" class="component-desc">智能体配置</text>
+    <text x="140" y="185" class="component-desc">执行监控</text>
+    
+    <!-- Agent API -->
+    <rect x="220" y="120" width="120" height="60" fill="#ffffff" stroke="#3498db" stroke-width="2" rx="8"/>
+    <text x="280" y="140" class="component-title">Agent API</text>
+    <text x="280" y="155" class="component-desc">智能体管理</text>
+    <text x="280" y="170" class="component-desc">RESTful接口</text>
+    
+    <!-- MCP API -->
+    <rect x="360" y="120" width="120" height="60" fill="#ffffff" stroke="#3498db" stroke-width="2" rx="8"/>
+    <text x="420" y="140" class="component-title">MCP API</text>
+    <text x="420" y="155" class="component-desc">MCP服务管理</text>
+    <text x="420" y="170" class="component-desc">协议集成</text>
+    
+    <!-- Plan API -->
+    <rect x="500" y="120" width="120" height="60" fill="#ffffff" stroke="#3498db" stroke-width="2" rx="8"/>
+    <text x="560" y="140" class="component-title">Plan API</text>
+    <text x="560" y="155" class="component-desc">计划执行</text>
+    <text x="560" y="170" class="component-desc">状态查询</text>
+  </g>
+  
+  <!-- Business Layer -->
+  <g id="business-layer">
+    <rect x="50" y="220" width="1500" height="140" fill="url(#businessGrad)" stroke="#c0392b" stroke-width="2" rx="10"/>
+    <text x="800" y="245" class="layer-title">业务层 (Business Layer)</text>
+    
+    <!-- Agent Management -->
+    <rect x="80" y="260" width="140" height="60" fill="#ffffff" stroke="#e74c3c" stroke-width="2" rx="8"/>
+    <text x="150" y="280" class="component-title">Agent Management</text>
+    <text x="150" y="295" class="component-desc">智能体管理</text>
+    <text x="150" y="310" class="component-desc">配置与生命周期</text>
+    
+    <!-- Plan Execution -->
+    <rect x="240" y="260" width="140" height="60" fill="#ffffff" stroke="#e74c3c" stroke-width="2" rx="8"/>
+    <text x="310" y="280" class="component-title">Plan Execution</text>
+    <text x="310" y="295" class="component-desc">计划执行引擎</text>
+    <text x="310" y="310" class="component-desc">Think-Act / Plan-Act</text>
+    
+    <!-- MCP Integration -->
+    <rect x="400" y="260" width="140" height="60" fill="#ffffff" stroke="#e74c3c" stroke-width="2" rx="8"/>
+    <text x="470" y="280" class="component-title">MCP Integration</text>
+    <text x="470" y="295" class="component-desc">外部服务集成</text>
+    <text x="470" y="310" class="component-desc">SSE/STUDIO/STREAM</text>
+    
+    <!-- Tool Management -->
+    <rect x="560" y="260" width="140" height="60" fill="#ffffff" stroke="#e74c3c" stroke-width="2" rx="8"/>
+    <text x="630" y="280" class="component-title">Tool Management</text>
+    <text x="630" y="295" class="component-desc">工具注册管理</text>
+    <text x="630" y="310" class="component-desc">调用与生命周期</text>
+    
+    <!-- Think-Act Process -->
+    <rect x="720" y="260" width="140" height="60" fill="#ffeaa7" stroke="#fdcb6e" stroke-width="2" rx="8"/>
+    <text x="790" y="280" class="component-title">Think-Act</text>
+    <text x="790" y="295" class="component-desc">思考-行动循环</text>
+    <text x="790" y="310" class="component-desc">探索性任务</text>
+    
+    <!-- Plan-Act Process -->
+    <rect x="880" y="260" width="140" height="60" fill="#ffeaa7" stroke="#fdcb6e" stroke-width="2" rx="8"/>
+    <text x="950" y="280" class="component-title">Plan-Act</text>
+    <text x="950" y="295" class="component-desc">计划-执行模式</text>
+    <text x="950" y="310" class="component-desc">确定性任务</text>
+  </g>
+  
+  <!-- Application Components Layer -->
+  <g id="components-layer">
+    <rect x="50" y="380" width="1500" height="140" fill="url(#applicationGrad)" stroke="#2980b9" stroke-width="2" rx="10"/>
+    <text x="800" y="405" class="layer-title">应用组件层 (Application Components)</text>
+    
+    <!-- Dynamic Agent -->
+    <rect x="80" y="420" width="130" height="60" fill="#ffffff" stroke="#3498db" stroke-width="2" rx="8"/>
+    <text x="145" y="440" class="component-title">Dynamic Agent</text>
+    <text x="145" y="455" class="component-desc">可配置智能体</text>
+    <text x="145" y="470" class="component-desc">运行时修改</text>
+    
+    <!-- ReAct Agent -->
+    <rect x="230" y="420" width="130" height="60" fill="#ffffff" stroke="#3498db" stroke-width="2" rx="8"/>
+    <text x="295" y="440" class="component-title">ReAct Agent</text>
+    <text x="295" y="455" class="component-desc">反应式智能体</text>
+    <text x="295" y="470" class="component-desc">思考-行动循环</text>
+    
+    <!-- Plan Agent -->
+    <rect x="380" y="420" width="130" height="60" fill="#ffffff" stroke="#3498db" stroke-width="2" rx="8"/>
+    <text x="445" y="440" class="component-title">Plan Agent</text>
+    <text x="445" y="455" class="component-desc">计划式智能体</text>
+    <text x="445" y="470" class="component-desc">先计划后执行</text>
+    
+    <!-- Planning Coordinator -->
+    <rect x="530" y="420" width="130" height="60" fill="#ffffff" stroke="#3498db" stroke-width="2" rx="8"/>
+    <text x="595" y="440" class="component-title">Planning</text>
+    <text x="595" y="450" class="component-title">Coordinator</text>
+    <text x="595" y="465" class="component-desc">执行流程协调</text>
+    
+    <!-- LLM Service -->
+    <rect x="680" y="420" width="130" height="60" fill="#d5f4e6" stroke="#27ae60" stroke-width="2" rx="8"/>
+    <text x="745" y="440" class="component-title">LLM Service</text>
+    <text x="745" y="455" class="component-desc">大语言模型</text>
+    <text x="745" y="470" class="component-desc">AI能力封装</text>
+    
+    <!-- Config Service -->
+    <rect x="830" y="420" width="130" height="60" fill="#d5f4e6" stroke="#27ae60" stroke-width="2" rx="8"/>
+    <text x="895" y="440" class="component-title">Config Service</text>
+    <text x="895" y="455" class="component-desc">配置管理服务</text>
+    <text x="895" y="470" class="component-desc">动态配置</text>
+  </g>
+  
+  <!-- Technology Layer -->
+  <g id="technology-layer">
+    <rect x="50" y="540" width="750" height="120" fill="url(#technologyGrad)" stroke="#229954" stroke-width="2" rx="10"/>
+    <text x="425" y="565" class="layer-title">技术层 (Technology Layer)</text>
+    
+    <!-- Spring Boot -->
+    <rect x="80" y="580" width="120" height="60" fill="#ffffff" stroke="#27ae60" stroke-width="2" rx="8"/>
+    <text x="140" y="600" class="component-title">Spring Boot</text>
+    <text x="140" y="615" class="component-desc">应用框架</text>
+    <text x="140" y="630" class="component-desc">依赖注入</text>
+    
+    <!-- Spring AI -->
+    <rect x="220" y="580" width="120" height="60" fill="#ffffff" stroke="#27ae60" stroke-width="2" rx="8"/>
+    <text x="280" y="600" class="component-title">Spring AI</text>
+    <text x="280" y="615" class="component-desc">AI模型集成</text>
+    <text x="280" y="630" class="component-desc">抽象层</text>
+    
+    <!-- JPA/Hibernate -->
+    <rect x="360" y="580" width="120" height="60" fill="#ffffff" stroke="#27ae60" stroke-width="2" rx="8"/>
+    <text x="420" y="600" class="component-title">JPA/Hibernate</text>
+    <text x="420" y="615" class="component-desc">对象关系映射</text>
+    <text x="420" y="630" class="component-desc">数据持久化</text>
+    
+    <!-- Database Interface -->
+    <rect x="500" y="580" width="120" height="60" fill="#fef9e7" stroke="#f39c12" stroke-width="2" rx="8"/>
+    <text x="560" y="600" class="component-title">Database</text>
+    <text x="560" y="610" class="component-title">Interface</text>
+    <text x="560" y="625" class="component-desc">数据库接口</text>
+    
+    <!-- AI Model Interface -->
+    <rect x="640" y="580" width="120" height="60" fill="#fef9e7" stroke="#f39c12" stroke-width="2" rx="8"/>
+    <text x="700" y="600" class="component-title">AI Model</text>
+    <text x="700" y="610" class="component-title">Interface</text>
+    <text x="700" y="625" class="component-desc">AI模型接口</text>
+  </g>
+  
+  <!-- Tool Ecosystem -->
+  <g id="tool-ecosystem">
+    <rect x="820" y="540" width="730" height="120" fill="url(#toolsGrad)" stroke="#8e44ad" stroke-width="2" rx="10"/>
+    <text x="1185" y="565" class="layer-title">工具生态 (Tool Ecosystem)</text>
+    
+    <!-- Browser Tool -->
+    <rect x="850" y="580" width="110" height="60" fill="#ffffff" stroke="#9b59b6" stroke-width="2" rx="8"/>
+    <text x="905" y="600" class="component-title">Browser Tool</text>
+    <text x="905" y="615" class="component-desc">网页操作</text>
+    <text x="905" y="630" class="component-desc">自动化浏览</text>
+    
+    <!-- Python Tool -->
+    <rect x="980" y="580" width="110" height="60" fill="#ffffff" stroke="#9b59b6" stroke-width="2" rx="8"/>
+    <text x="1035" y="600" class="component-title">Python Tool</text>
+    <text x="1035" y="615" class="component-desc">代码执行</text>
+    <text x="1035" y="630" class="component-desc">脚本运行</text>
+    
+    <!-- Bash Tool -->
+    <rect x="1110" y="580" width="110" height="60" fill="#ffffff" stroke="#9b59b6" stroke-width="2" rx="8"/>
+    <text x="1165" y="600" class="component-title">Bash Tool</text>
+    <text x="1165" y="615" class="component-desc">Shell命令</text>
+    <text x="1165" y="630" class="component-desc">系统操作</text>
+    
+    <!-- File Tool -->
+    <rect x="1240" y="580" width="110" height="60" fill="#ffffff" stroke="#9b59b6" stroke-width="2" rx="8"/>
+    <text x="1295" y="600" class="component-title">File Tool</text>
+    <text x="1295" y="615" class="component-desc">文件操作</text>
+    <text x="1295" y="630" class="component-desc">读写处理</text>
+    
+    <!-- MCP Tool -->
+    <rect x="1370" y="580" width="110" height="60" fill="#ffffff" stroke="#9b59b6" stroke-width="2" rx="8"/>
+    <text x="1425" y="600" class="component-title">MCP Tool</text>
+    <text x="1425" y="615" class="component-desc">外部服务</text>
+    <text x="1425" y="630" class="component-desc">协议集成</text>
+  </g>
+  
+  <!-- Infrastructure Layer -->
+  <g id="infrastructure-layer">
+    <rect x="50" y="680" width="1500" height="120" fill="url(#infrastructureGrad)" stroke="#e67e22" stroke-width="2" rx="10"/>
+    <text x="800" y="705" class="layer-title">基础设施层 (Infrastructure)</text>
+    
+    <!-- H2 Database -->
+    <rect x="80" y="720" width="120" height="60" fill="#ffffff" stroke="#f39c12" stroke-width="2" rx="8"/>
+    <text x="140" y="740" class="component-title">H2 Database</text>
+    <text x="140" y="755" class="component-desc">嵌入式数据库</text>
+    <text x="140" y="770" class="component-desc">开发测试</text>
+    
+    <!-- MySQL Database -->
+    <rect x="220" y="720" width="120" height="60" fill="#ffffff" stroke="#f39c12" stroke-width="2" rx="8"/>
+    <text x="280" y="740" class="component-title">MySQL</text>
+    <text x="280" y="750" class="component-title">Database</text>
+    <text x="280" y="765" class="component-desc">生产环境</text>
+    
+    <!-- DashScope API -->
+    <rect x="360" y="720" width="120" height="60" fill="#ffffff" stroke="#f39c12" stroke-width="2" rx="8"/>
+    <text x="420" y="740" class="component-title">DashScope API</text>
+    <text x="420" y="755" class="component-desc">阿里云大模型</text>
+    <text x="420" y="770" class="component-desc">AI服务</text>
+    
+    <!-- MCP Servers -->
+    <rect x="500" y="720" width="120" height="60" fill="#ffffff" stroke="#f39c12" stroke-width="2" rx="8"/>
+    <text x="560" y="740" class="component-title">MCP Servers</text>
+    <text x="560" y="755" class="component-desc">外部MCP服务</text>
+    <text x="560" y="770" class="component-desc">协议支持</text>
+    
+    <!-- Chrome Driver -->
+    <rect x="640" y="720" width="120" height="60" fill="#ffffff" stroke="#f39c12" stroke-width="2" rx="8"/>
+    <text x="700" y="740" class="component-title">Chrome Driver</text>
+    <text x="700" y="755" class="component-desc">浏览器驱动</text>
+    <text x="700" y="770" class="component-desc">自动化支持</text>
+    
+    <!-- Python Runtime -->
+    <rect x="780" y="720" width="120" height="60" fill="#ffffff" stroke="#f39c12" stroke-width="2" rx="8"/>
+    <text x="840" y="740" class="component-title">Python</text>
+    <text x="840" y="750" class="component-title">Runtime</text>
+    <text x="840" y="765" class="component-desc">脚本执行环境</text>
+  </g>
+  
+  <!-- Data Layer -->
+  <g id="data-layer">
+    <rect x="50" y="820" width="1500" height="120" fill="url(#dataGrad)" stroke="#138d75" stroke-width="2" rx="10"/>
+    <text x="800" y="845" class="layer-title">数据层 (Data Layer)</text>
+    
+    <!-- Agent Config -->
+    <rect x="200" y="860" width="150" height="60" fill="#ffffff" stroke="#16a085" stroke-width="2" rx="8"/>
+    <text x="275" y="880" class="component-title">Agent Config</text>
+    <text x="275" y="895" class="component-desc">智能体配置数据</text>
+    <text x="275" y="910" class="component-desc">参数与工具映射</text>
+    
+    <!-- Plan Data -->
+    <rect x="370" y="860" width="150" height="60" fill="#ffffff" stroke="#16a085" stroke-width="2" rx="8"/>
+    <text x="445" y="880" class="component-title">Plan Data</text>
+    <text x="445" y="895" class="component-desc">执行计划数据</text>
+    <text x="445" y="910" class="component-desc">步骤与状态</text>
+    
+    <!-- Execution Record -->
+    <rect x="540" y="860" width="150" height="60" fill="#ffffff" stroke="#16a085" stroke-width="2" rx="8"/>
+    <text x="615" y="880" class="component-title">Execution Record</text>
+    <text x="615" y="895" class="component-desc">执行记录</text>
+    <text x="615" y="910" class="component-desc">历史与审计</text>
+    
+    <!-- MCP Config -->
+    <rect x="710" y="860" width="150" height="60" fill="#ffffff" stroke="#16a085" stroke-width="2" rx="8"/>
+    <text x="785" y="880" class="component-title">MCP Config</text>
+    <text x="785" y="895" class="component-desc">MCP配置数据</text>
+    <text x="785" y="910" class="component-desc">连接与参数</text>
+  </g>
+  
+  <!-- Key Relationships -->
+  <g id="relationships">
+    <!-- Application to Business Layer -->
+    <line x1="140" y1="180" x2="150" y2="260" class="relation-line"/>
+    <line x1="280" y1="180" x2="150" y2="260" class="relation-line"/>
+    <line x1="420" y1="180" x2="470" y2="260" class="relation-line"/>
+    <line x1="560" y1="180" x2="310" y2="260" class="relation-line"/>
+    
+    <!-- Business to Components -->
+    <line x1="150" y1="320" x2="145" y2="420" class="composition-line"/>
+    <line x1="310" y1="320" x2="595" y2="420" class="composition-line"/>
+    <line x1="790" y1="320" x2="310" y2="420" class="dependency-line"/>
+    <line x1="950" y1="320" x2="310" y2="420" class="dependency-line"/>
+    
+    <!-- Components to Technology -->
+    <line x1="745" y1="480" x2="280" y2="580" class="dependency-line"/>
+    <line x1="895" y1="480" x2="420" y2="580" class="dependency-line"/>
+    
+    <!-- Technology to Infrastructure -->
+    <line x1="560" y1="640" x2="140" y2="720" class="realization-line"/>
+    <line x1="560" y1="640" x2="280" y2="720" class="realization-line"/>
+    <line x1="700" y1="640" x2="420" y2="720" class="dependency-line"/>
+    
+    <!-- Tools to Infrastructure -->
+    <line x1="905" y1="640" x2="700" y2="720" class="dependency-line"/>
+    <line x1="1035" y1="640" x2="840" y2="720" class="dependency-line"/>
+    <line x1="1425" y1="640" x2="560" y2="720" class="dependency-line"/>
+    
+    <!-- Business to Data -->
+    <line x1="150" y1="320" x2="275" y2="860" class="dependency-line"/>
+    <line x1="310" y1="320" x2="445" y2="860" class="dependency-line"/>
+    <line x1="310" y1="320" x2="615" y2="860" class="dependency-line"/>
+    <line x1="470" y1="320" x2="785" y2="860" class="dependency-line"/>
+  </g>
+  
+  <!-- Legend -->
+  <g id="legend">
+    <rect x="1050" y="860" width="480" height="80" fill="#ffffff" stroke="#95a5a6" stroke-width="2" rx="8"/>
+    <text x="1290" y="880" class="component-title" text-anchor="middle">ArchiMate 图例</text>
+    
+    <line x1="1070" y1="895" x2="1100" y2="895" class="relation-line"/>
+    <text x="1110" y="900" class="legend-text">调用/使用关系</text>
+    
+    <line x1="1070" y1="910" x2="1100" y2="910" class="composition-line"/>
+    <text x="1110" y="915" class="legend-text">组合/包含关系</text>
+    
+    <line x1="1280" y1="895" x2="1310" y2="895" class="dependency-line"/>
+    <text x="1320" y="900" class="legend-text">依赖关系</text>
+    
+    <line x1="1280" y1="910" x2="1310" y2="910" class="realization-line"/>
+    <text x="1320" y="915" class="legend-text">实现/连接关系</text>
+  </g>
+  
+  <!-- System Features -->
+  <g id="features">
+    <rect x="50" y="960" width="1500" height="200" fill="#f8f9fa" stroke="#dee2e6" stroke-width="1" rx="10"/>
+    <text x="800" y="985" class="main-title" style="font-size: 16px;">JManus 系统核心特性</text>
+    
+    <!-- Plan-Act Mode -->
+    <rect x="80" y="1000" width="280" height="120" fill="#e8f6f3" stroke="#16a085" stroke-width="2" rx="8"/>
+    <text x="220" y="1025" class="component-title">🎯 Plan-Act 模式</text>
+    <text x="90" y="1045" class="legend-text">• Think-Act: 思考-行动循环</text>
+    <text x="90" y="1060" class="legend-text">• Plan-Act: 先制定详细计划</text>
+    <text x="90" y="1075" class="legend-text">• 支持探索性和确定性任务</text>
+    <text x="90" y="1090" class="legend-text">• 动态切换执行模式</text>
+    <text x="90" y="1105" class="legend-text">• 完整的执行记录和审计</text>
+
+    <!-- MCP Protocol -->
+    <rect x="380" y="1000" width="280" height="120" fill="#fdf2e9" stroke="#e67e22" stroke-width="2" rx="8"/>
+    <text x="520" y="1025" class="component-title">🔗 MCP 协议支持</text>
+    <text x="390" y="1045" class="legend-text">• SSE连接: Server-Sent Events</text>
+    <text x="390" y="1060" class="legend-text">• STUDIO连接: 本地STDIO</text>
+    <text x="390" y="1075" class="legend-text">• STREAMING连接: 流式传输</text>
+    <text x="390" y="1090" class="legend-text">• 外部服务原生集成</text>
+    <text x="390" y="1105" class="legend-text">• 工具回调缓存机制</text>
+
+    <!-- Dynamic Configuration -->
+    <rect x="680" y="1000" width="280" height="120" fill="#f4ecf7" stroke="#8e44ad" stroke-width="2" rx="8"/>
+    <text x="820" y="1025" class="component-title">🛠️ 动态配置</text>
+    <text x="690" y="1045" class="legend-text">• Web界面动态配置智能体</text>
+    <text x="690" y="1060" class="legend-text">• 工具热插拔支持</text>
+    <text x="690" y="1075" class="legend-text">• 运行时添加/移除组件</text>
+    <text x="690" y="1090" class="legend-text">• 多命名空间隔离</text>
+    <text x="690" y="1105" class="legend-text">• 配置版本管理</text>
+
+    <!-- Monitoring and Logging -->
+    <rect x="980" y="1000" width="280" height="120" fill="#eaf2f8" stroke="#3498db" stroke-width="2" rx="8"/>
+    <text x="1120" y="1025" class="component-title">📊 监控和日志</text>
+    <text x="990" y="1045" class="legend-text">• 完整的执行记录</text>
+    <text x="990" y="1060" class="legend-text">• 实时性能监控</text>
+    <text x="990" y="1075" class="legend-text">• 分层错误处理</text>
+    <text x="990" y="1090" class="legend-text">• 自动恢复机制</text>
+    <text x="990" y="1105" class="legend-text">• 审计日志和告警</text>
+
+    <!-- AI Model Integration -->
+    <rect x="1280" y="1000" width="250" height="120" fill="#fff5e6" stroke="#f39c12" stroke-width="2" rx="8"/>
+    <text x="1405" y="1025" class="component-title">🤖 AI模型集成</text>
+    <text x="1290" y="1045" class="legend-text">• DashScope: 阿里云大模型</text>
+    <text x="1290" y="1060" class="legend-text">• OpenAI: GPT系列模型</text>
+    <text x="1290" y="1075" class="legend-text">• 可扩展: 其他AI服务</text>
+    <text x="1290" y="1090" class="legend-text">• 模型切换和负载均衡</text>
+    <text x="1290" y="1105" class="legend-text">• 参数调优和优化</text>
+  </g>
+
+  <!-- Deployment Options -->
+  <g id="deployment">
+    <rect x="80" y="1140" width="680" height="60" fill="#e8f5e8" stroke="#27ae60" stroke-width="2" rx="8"/>
+    <text x="420" y="1165" class="component-title">部署选项与环境支持</text>
+    <text x="90" y="1185" class="legend-text">🗄️ 数据库: H2(开发测试) | MySQL(生产推荐) | PostgreSQL(企业级) | 多租户支持</text>
+  </g>
+
+  <!-- Architecture Principles -->
+  <g id="principles">
+    <rect x="780" y="1140" width="750" height="60" fill="#f8f4fd" stroke="#9b59b6" stroke-width="2" rx="8"/>
+    <text x="1155" y="1165" class="component-title">架构设计原则</text>
+    <text x="790" y="1185" class="legend-text">🏗️ 分层解耦 | 🔧 高扩展性 | 🛡️ 类型安全 | 🎯 职责清晰 | 📊 数据流向明确 | 🔗 松耦合设计</text>
+  </g>
+
+  <!-- Footer -->
+  <text x="800" y="1235" class="main-title" style="font-size: 16px;">
+    JManus 多智能体协作系统 - ArchiMate架构设计文档
+  </text>
+  <text x="800" y="1255" class="note-text" text-anchor="middle">
+    分层架构 | MCP协议集成 | Plan-Act模式 | 动态配置 | 工具生态 | AI模型抽象
+  </text>
+  <text x="800" y="1275" class="note-text" text-anchor="middle">
+    文档版本: 1.0 | 创建日期: 2025年1月 | 架构标准: ArchiMate 3.2 | 维护者: Spring AI Alibaba Team
+  </text>
+</svg>

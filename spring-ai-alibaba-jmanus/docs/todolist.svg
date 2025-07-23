@@ -1,0 +1,168 @@
+<svg width="1400" height="600" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      .title { font-family: Arial, sans-serif; font-size: 20px; font-weight: bold; fill: #2c3e50; text-anchor: middle; }
+      .subtitle { font-family: Arial, sans-serif; font-size: 14px; fill: #34495e; text-anchor: middle; }
+      .header { font-family: Arial, sans-serif; font-size: 12px; font-weight: bold; fill: #ffffff; text-anchor: middle; }
+      .cell-text { font-family: Arial, sans-serif; font-size: 10px; fill: #2c3e50; }
+      .phase-text { font-family: Arial, sans-serif; font-size: 10px; fill: #ffffff; font-weight: bold; text-anchor: middle; }
+      .diagram-type { font-family: Arial, sans-serif; font-size: 11px; fill: #8e44ad; font-weight: bold; }
+    </style>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="1400" height="600" fill="#f8f9fa"/>
+  
+  <!-- Title Section -->
+  <text x="700" y="35" class="title">JManus 系统设计 UML 文档规划</text>
+  <text x="700" y="55" class="subtitle">基于 PlantUML 的 8 类核心设计文档</text>
+  
+  <!-- Table Header -->
+  <rect x="50" y="80" width="1300" height="40" fill="#34495e"/>
+  <text x="150" y="105" class="header">文档名</text>
+  <text x="350" y="105" class="header">UML图类型</text>
+  <text x="500" y="105" class="header">英文名</text>
+  <text x="750" y="105" class="header">使用场景</text>
+  <text x="1000" y="105" class="header">应用阶段</text>
+  <text x="1200" y="105" class="header">关键优势</text>
+  
+  <!-- Table Rows -->
+  <!-- Row 1: Use Case Diagram -->
+  <rect x="50" y="120" width="1300" height="50" fill="#ecf0f1" stroke="#bdc3c7"/>
+  <rect x="50" y="120" width="200" height="50" fill="#e8f5e8"/>
+  <text x="60" y="140" class="cell-text" font-weight="bold">jmanus_use_case_diagram.md</text>
+  <text x="260" y="140" class="diagram-type">用例图</text>
+  <text x="260" y="155" class="cell-text">Use Case Diagram</text>
+  <text x="410" y="140" class="cell-text">展示系统与外部角色</text>
+  <text x="410" y="155" class="cell-text">（用户、系统）交互</text>
+  <rect x="620" y="125" width="120" height="40" fill="#3498db" rx="5"/>
+  <text x="680" y="148" class="phase-text">需求分析</text>
+  <text x="1010" y="140" class="cell-text">高层次视角</text>
+  <text x="1010" y="155" class="cell-text">便于需求讨论与确认</text>
+  
+  <!-- Row 2: Class Diagram -->
+  <rect x="50" y="170" width="1300" height="50" fill="#ffffff" stroke="#bdc3c7"/>
+  <rect x="50" y="170" width="200" height="50" fill="#fff2e8"/>
+  <text x="60" y="190" class="cell-text" font-weight="bold">jmanus_class_diagram.md</text>
+  <text x="260" y="190" class="diagram-type">类图</text>
+  <text x="260" y="205" class="cell-text">Class Diagram</text>
+  <text x="410" y="190" class="cell-text">描述类、接口</text>
+  <text x="410" y="205" class="cell-text">及其关系</text>
+  <rect x="620" y="175" width="120" height="40" fill="#e74c3c" rx="5"/>
+  <text x="680" y="198" class="phase-text">详细设计</text>
+  <text x="1010" y="190" class="cell-text">明确结构、职责</text>
+  <text x="1010" y="205" class="cell-text">继承与关联</text>
+  
+  <!-- Row 3: Sequence Diagram -->
+  <rect x="50" y="220" width="1300" height="50" fill="#ecf0f1" stroke="#bdc3c7"/>
+  <rect x="50" y="220" width="200" height="50" fill="#e8f8ff"/>
+  <text x="60" y="240" class="cell-text" font-weight="bold">jmanus_sequence_diagram.md</text>
+  <text x="260" y="240" class="diagram-type">时序图</text>
+  <text x="260" y="255" class="cell-text">Sequence Diagram</text>
+  <text x="410" y="240" class="cell-text">展示对象/组件间</text>
+  <text x="410" y="255" class="cell-text">消息传递顺序</text>
+  <rect x="620" y="225" width="120" height="40" fill="#f39c12" rx="5"/>
+  <text x="680" y="248" class="phase-text">设计开发调试</text>
+  <text x="1010" y="240" class="cell-text">可视化流程</text>
+  <text x="1010" y="255" class="cell-text">识别性能瓶颈</text>
+  
+  <!-- Row 4: Activity Diagram -->
+  <rect x="50" y="270" width="1300" height="50" fill="#ffffff" stroke="#bdc3c7"/>
+  <rect x="50" y="270" width="200" height="50" fill="#f0e8ff"/>
+  <text x="60" y="290" class="cell-text" font-weight="bold">jmanus_activity_diagram.md</text>
+  <text x="260" y="290" class="diagram-type">活动图</text>
+  <text x="260" y="305" class="cell-text">Activity Diagram</text>
+  <text x="410" y="290" class="cell-text">模型化业务流程</text>
+  <text x="410" y="305" class="cell-text">及并行分支</text>
+  <rect x="620" y="275" width="120" height="40" fill="#9b59b6" rx="5"/>
+  <text x="680" y="298" class="phase-text">业务建模</text>
+  <text x="1010" y="290" class="cell-text">清晰呈现流程逻辑</text>
+  <text x="1010" y="305" class="cell-text">和并行分支</text>
+  
+  <!-- Row 5: State Diagram -->
+  <rect x="50" y="320" width="1300" height="50" fill="#ecf0f1" stroke="#bdc3c7"/>
+  <rect x="50" y="320" width="200" height="50" fill="#ffe8e8"/>
+  <text x="60" y="340" class="cell-text" font-weight="bold">jmanus_state_diagram.md</text>
+  <text x="260" y="340" class="diagram-type">状态图</text>
+  <text x="260" y="355" class="cell-text">State Diagram</text>
+  <text x="410" y="340" class="cell-text">表示对象生命周期</text>
+  <text x="410" y="355" class="cell-text">状态及转换</text>
+  <rect x="620" y="325" width="120" height="40" fill="#e67e22" rx="5"/>
+  <text x="680" y="348" class="phase-text">复杂状态管理</text>
+  <text x="1010" y="340" class="cell-text">跟踪状态变化</text>
+  <text x="1010" y="355" class="cell-text">调试异常行为</text>
+  
+  <!-- Row 6: Component Diagram -->
+  <rect x="50" y="370" width="1300" height="50" fill="#ffffff" stroke="#bdc3c7"/>
+  <rect x="50" y="370" width="200" height="50" fill="#e8ffe8"/>
+  <text x="60" y="390" class="cell-text" font-weight="bold">jmanus_component_diagram.md</text>
+  <text x="260" y="390" class="diagram-type">组件图</text>
+  <text x="260" y="405" class="cell-text">Component Diagram</text>
+  <text x="410" y="390" class="cell-text">可视化系统组件</text>
+  <text x="410" y="405" class="cell-text">及其依赖关系</text>
+  <rect x="620" y="375" width="120" height="40" fill="#27ae60" rx="5"/>
+  <text x="680" y="398" class="phase-text">架构设计重构</text>
+  <text x="1010" y="390" class="cell-text">支持模块化</text>
+  <text x="1010" y="405" class="cell-text">易于演进</text>
+  
+  <!-- Row 7: Deployment Diagram -->
+  <rect x="50" y="420" width="1300" height="50" fill="#ecf0f1" stroke="#bdc3c7"/>
+  <rect x="50" y="420" width="200" height="50" fill="#fff8e8"/>
+  <text x="60" y="440" class="cell-text" font-weight="bold">jmanus_deployment_diagram.md</text>
+  <text x="260" y="440" class="diagram-type">部署图</text>
+  <text x="260" y="455" class="cell-text">Deployment Diagram</text>
+  <text x="410" y="440" class="cell-text">描述物理节点与</text>
+  <text x="410" y="455" class="cell-text">软件部署拓扑</text>
+  <rect x="620" y="425" width="120" height="40" fill="#16a085" rx="5"/>
+  <text x="680" y="448" class="phase-text">架构设计运维</text>
+  <text x="1010" y="440" class="cell-text">展示基础设施</text>
+  <text x="1010" y="455" class="cell-text">和网络布局</text>
+  
+  <!-- Row 8: Object Diagram -->
+  <rect x="50" y="470" width="1300" height="50" fill="#ffffff" stroke="#bdc3c7"/>
+  <rect x="50" y="470" width="200" height="50" fill="#f8f0ff"/>
+  <text x="60" y="490" class="cell-text" font-weight="bold">jmanus_object_diagram.md</text>
+  <text x="260" y="490" class="diagram-type">对象图</text>
+  <text x="260" y="505" class="cell-text">Object Diagram</text>
+  <text x="410" y="490" class="cell-text">快照式展示对象</text>
+  <text x="410" y="505" class="cell-text">实例及关联</text>
+  <rect x="620" y="475" width="120" height="40" fill="#8e44ad" rx="5"/>
+  <text x="680" y="498" class="phase-text">调试与示例</text>
+  <text x="1010" y="490" class="cell-text">具体实例演示</text>
+  <text x="1010" y="505" class="cell-text">便于问题复现</text>
+  
+  <!-- Summary Section -->
+  <rect x="50" y="540" width="1300" height="40" fill="#2c3e50"/>
+  <text x="700" y="558" class="header" style="font-size: 14px;">JManus 系统设计文档全景规划</text>
+  <text x="700" y="575" class="header" style="font-size: 12px;">从需求分析到部署运维的完整 UML 建模体系</text>
+  
+  <!-- Phase Flow Indicators -->
+  <g id="flow-arrows">
+    <!-- Arrow from 需求分析 to 详细设计 -->
+    <path d="M 740 148 Q 760 148 760 175 Q 760 198 740 198" stroke="#7f8c8d" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+    
+    <!-- Arrow from 详细设计 to 设计开发调试 -->
+    <path d="M 740 198 Q 760 198 760 225 Q 760 248 740 248" stroke="#7f8c8d" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+    
+    <!-- Define arrow marker -->
+    <defs>
+      <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+        <polygon points="0 0, 10 3.5, 0 7" fill="#7f8c8d"/>
+      </marker>
+    </defs>
+  </g>
+  
+  <!-- Legend -->
+  <g id="legend">
+    <rect x="1050" y="80" width="300" height="120" fill="#ffffff" stroke="#bdc3c7" stroke-width="1"/>
+    <text x="1200" y="100" class="header" fill="#2c3e50">文档类型说明</text>
+    <circle cx="1070" cy="115" r="8" fill="#3498db"/>
+    <text x="1090" y="120" class="cell-text">结构类图表 (类图、组件图)</text>
+    <circle cx="1070" cy="135" r="8" fill="#e74c3c"/>
+    <text x="1090" y="140" class="cell-text">行为类图表 (用例图、时序图)</text>
+    <circle cx="1070" cy="155" r="8" fill="#27ae60"/>
+    <text x="1090" y="160" class="cell-text">实现类图表 (部署图、对象图)</text>
+    <circle cx="1070" cy="175" r="8" fill="#f39c12"/>
+    <text x="1090" y="180" class="cell-text">过程类图表 (活动图、状态图)</text>
+  </g>
+</svg>
